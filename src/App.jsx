@@ -19,7 +19,7 @@ function App() {
   function completeTodo(id) {
     setTodoList((previousTodoList) => {
       return previousTodoList.map((todo) => {
-        if (todo.id == id) {
+        if (todo.id === id) {
           return { ...todo, isCompleted: true };
         }
         return todo;
