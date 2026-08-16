@@ -101,12 +101,12 @@ function TodosPage({ token }) {
     try {
       const response = await fetch(`/api/tasks/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify({ isCompleted: true }),
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': token,
         },
         credentials: 'include',
+        body: JSON.stringify({ isCompleted: true }),
       });
       if (response.status !== 200) {
         throw new Error('Error completing todo');
@@ -139,15 +139,15 @@ function TodosPage({ token }) {
     try {
       const response = await fetch(`/api/tasks/${editedTodo.id}`, {
         method: 'PATCH',
-        body: JSON.stringify({
-          title: editedTodo.title,
-          isCompleted: editedTodo.isCompleted,
-        }),
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': token,
         },
         credentials: 'include',
+        body: JSON.stringify({
+          title: editedTodo.title,
+          isCompleted: editedTodo.isCompleted,
+        }),
       });
 
       if (response.status !== 200) {
