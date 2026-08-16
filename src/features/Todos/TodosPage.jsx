@@ -167,7 +167,7 @@ function TodosPage({ token }) {
     <div>
       {error ? (
         <div>
-          <span>{error.message}</span>
+          <span>{error}</span>
           <button type='button' onClick={() => setError('')}>
             Clear Error
           </button>
