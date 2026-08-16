@@ -136,7 +136,7 @@ function TodosPage({ token }) {
     setTodoList(updatedTodos);
 
     try {
-      const response = await fetch(`/api/tasks/${editedTodo.id}`, {
+      const response = await fetch(`/api/taks/${editedTodo.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           title: editedTodo.title,
@@ -165,6 +165,15 @@ function TodosPage({ token }) {
   }
   return (
     <div>
+      {error ? (
+        <div>
+          <span>{error.message}</span>
+          <button type='button' onClick={() => setError('')}>
+            Clear Error
+          </button>
+        </div>
+      ) : null}
+      {isTodoListLoading ? <div>Loading todo list...</div> : null}
       <TodoForm onAddTodo={addTodo} />
       <TodoList todoList={todoList} onCompleteTodo={completeTodo} onUpdateTodo={updateTodo} />
     </div>
