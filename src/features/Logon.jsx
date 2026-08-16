@@ -43,7 +43,7 @@ function Logon({ onSetEmail, onSetToken }) {
       />
       <label htmlFor='user-password'>Password</label>
       <input
-        type='text'
+        type='password'
         id='user-password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
