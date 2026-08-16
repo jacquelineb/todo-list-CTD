@@ -80,7 +80,7 @@ function TodosPage({ token }) {
     } catch (error) {
       // remove the failed todo from the list and set an error message
       setTodoList((previous) => previous.filter((todo) => todo.id !== newTodo.id));
-      setError(error);
+      setError(error.message);
     } finally {
       setIsTodoListLoading(false);
     }
@@ -120,7 +120,7 @@ function TodosPage({ token }) {
           return todo;
         });
       });
-      setError(error);
+      setError(error.message);
     }
   }
 
@@ -160,7 +160,7 @@ function TodosPage({ token }) {
           return todo;
         });
       });
-      setError(error);
+      setError(error.message);
     }
   }
   return (
