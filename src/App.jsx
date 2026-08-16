@@ -1,10 +1,11 @@
 import './App.css';
+import Header from './shared/Header.jsx';
 import TodosPage from './features/Todos/TodosPage.jsx';
 
 function App() {
   return (
     <div>
-      <h1>Todo List</h1>
+      <Header />
       <TodosPage />
     </div>
   );
