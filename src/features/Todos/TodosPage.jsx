@@ -25,7 +25,7 @@ function TodosPage({ token }) {
         if (response.status === 200) {
           setTodoList(result.tasks);
         } else if (response.status === 401) {
-          throw new Error(response.status);
+          throw new Error('Unauthorized');
         } else {
           throw new Error('Error fetching todos.');
         }
