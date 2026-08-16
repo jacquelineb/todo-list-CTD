@@ -106,6 +106,7 @@ function TodosPage({ token }) {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': token,
         },
+        credentials: 'include',
       });
       if (response.status !== 200) {
         throw new Error('Error completing todo');
@@ -146,6 +147,7 @@ function TodosPage({ token }) {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': token,
         },
+        credentials: 'include',
       });
 
       if (response.status !== 200) {
