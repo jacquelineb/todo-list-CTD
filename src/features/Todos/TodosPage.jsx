@@ -75,11 +75,11 @@ function TodosPage({ token }) {
           });
         });
       } else {
-        // remove the failed todo from the list and set an error message
-        setTodoList((previous) => previous.filter((todo) => todo.id !== newTodo.id));
-        setError('Failed to add todo');
+        throw new Error('Failed to add todo');
       }
     } catch (error) {
+      // remove the failed todo from the list and set an error message
+      setTodoList((previous) => previous.filter((todo) => todo.id !== newTodo.id));
       setError(error);
     } finally {
       setIsTodoListLoading(false);
