@@ -8,7 +8,6 @@ function TodosPage({ token }) {
   const [isTodoListLoading, setIsTodoListLoading] = useState(false);
 
   useEffect(() => {
-    console.log('fetching');
     async function fetchTodos() {
       setIsTodoListLoading(true);
       try {
@@ -42,14 +41,49 @@ function TodosPage({ token }) {
     }
   }, [token]);
 
-  function addTodo(todoTitle) {
+  async function addTodo(todoTitle) {
     const newTodo = {
       id: Date.now(),
       title: todoTitle,
       isCompleted: false,
     };
-
     setTodoList((previous) => [newTodo, ...previous]);
+    setIsTodoListLoading(true);
+    try {
+      const response = await fetch('/api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          title: newTodo.title,
+          isCompleted: newTodo.isCompleted,
+        }),
+      });
+
+      if (response.status === 201) {
+        const result = await response.json();
+        // replace the temp todo with the real todo from the server response
+        setTodoList((previous) => {
+          return previous.map((todo) => {
+            if (todo.id === newTodo.id) {
+              return result;
+            }
+            return todo;
+          });
+        });
+      } else {
+        // remove the failed todo from the list and set an error message
+        setTodoList((previous) => previous.filter((todo) => todo.id !== newTodo.id));
+        setError('Failed to add todo');
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsTodoListLoading(false);
+    }
   }
 
   function completeTodo(id) {
