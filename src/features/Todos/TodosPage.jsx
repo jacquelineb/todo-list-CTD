@@ -136,7 +136,7 @@ function TodosPage({ token }) {
     setTodoList(updatedTodos);
 
     try {
-      const response = await fetch(`/api/taks/${editedTodo.id}`, {
+      const response = await fetch(`/api/tasks/${editedTodo.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           title: editedTodo.title,
