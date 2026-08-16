@@ -86,15 +86,41 @@ function TodosPage({ token }) {
     }
   }
 
-  function completeTodo(id) {
+  async function completeTodo(id) {
+    let originalTodo;
     setTodoList((previousTodoList) => {
       return previousTodoList.map((todo) => {
         if (todo.id === id) {
+          originalTodo = todo;
           return { ...todo, isCompleted: true };
         }
         return todo;
       });
     });
+
+    try {
+      const response = await fetch(`/api/tasks/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ isCompleted: true }),
+        headers: {
+          'X-CSRF-TOKEN': token,
+        },
+      });
+      if (response.status !== 200) {
+        throw new Error('Error completing todo');
+      }
+    } catch (error) {
+      // on failure to PATCH todo as completed, rollback to the original todo and set error message
+      setTodoList((previousTodoList) => {
+        return previousTodoList.map((todo) => {
+          if (todo.id === originalTodo.id) {
+            return { ...todo, isCompleted: false };
+          }
+          return todo;
+        });
+      });
+      setError(error);
+    }
   }
 
   function updateTodo(editedTodo) {
