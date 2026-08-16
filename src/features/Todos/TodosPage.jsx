@@ -103,6 +103,7 @@ function TodosPage({ token }) {
         method: 'PATCH',
         body: JSON.stringify({ isCompleted: true }),
         headers: {
+          'Content-Type': 'application/json',
           'X-CSRF-TOKEN': token,
         },
       });
@@ -123,15 +124,44 @@ function TodosPage({ token }) {
     }
   }
 
-  function updateTodo(editedTodo) {
+  async function updateTodo(editedTodo) {
+    let originalTodo;
     const updatedTodos = todoList.map((todo) => {
       if (todo.id === editedTodo.id) {
+        originalTodo = { ...todo };
         return { ...editedTodo };
       }
       return todo;
     });
-
     setTodoList(updatedTodos);
+
+    try {
+      const response = await fetch(`/api/tasks/${editedTodo.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          title: editedTodo.title,
+          isCompleted: editedTodo.isCompleted,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+        },
+      });
+
+      if (response.status !== 200) {
+        throw new Error('Unable to update todo');
+      }
+    } catch (error) {
+      setTodoList((previous) => {
+        return previous.map((todo) => {
+          if (todo.id === originalTodo.id) {
+            return { ...originalTodo };
+          }
+          return todo;
+        });
+      });
+      setError(error);
+    }
   }
   return (
     <div>
