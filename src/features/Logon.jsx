@@ -31,28 +31,30 @@ function Logon({ onSetEmail, onSetToken }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       {authError ? <div>{authError}</div> : null}
-      <label htmlFor='user-email'>Email</label>
-      <input
-        type='text'
-        id='user-email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <label htmlFor='user-password'>Password</label>
-      <input
-        type='password'
-        id='user-password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type='submit' disabled={isLoggingOn}>
-        {isLoggingOn ? 'Logging in...' : 'Log On'}
-      </button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='user-email'>Email</label>
+        <input
+          type='text'
+          id='user-email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label htmlFor='user-password'>Password</label>
+        <input
+          type='password'
+          id='user-password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type='submit' disabled={isLoggingOn}>
+          {isLoggingOn ? 'Logging in...' : 'Log On'}
+        </button>
+      </form>
+    </>
   );
 }
 
