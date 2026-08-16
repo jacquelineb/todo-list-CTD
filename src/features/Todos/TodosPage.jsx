@@ -116,7 +116,7 @@ function TodosPage({ token }) {
       setTodoList((previousTodoList) => {
         return previousTodoList.map((todo) => {
           if (todo.id === originalTodo.id) {
-            return { ...todo, isCompleted: false };
+            return { ...originalTodo };
           }
           return todo;
         });
