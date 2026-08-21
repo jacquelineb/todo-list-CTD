@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import TodoForm from './TodoForm.jsx';
 import TodoList from './TodoList/TodoList.jsx';
 import SortBy from '../../shared/SortBy.jsx';
+import FilterInput from '../../shared/FilterInput.jsx';
+import useDebounce from '../../utils/useDebounce.js';
 
 function TodosPage({ token }) {
   const [todoList, setTodoList] = useState([]);
@@ -9,16 +11,18 @@ function TodosPage({ token }) {
   const [isTodoListLoading, setIsTodoListLoading] = useState(false);
   const [sortBy, setSortBy] = useState('createdAt');
   const [sortDirection, setSortDirection] = useState('desc');
+  const [filterTerm, setFilterTerm] = useState('');
+  const debouncedFilterTerm = useDebounce(filterTerm, 300);
 
   useEffect(() => {
     async function fetchTodos() {
       setIsTodoListLoading(true);
       try {
-        const params = new URLSearchParams({
-          sortBy,
-          sortDirection,
-          limit: 100,
-        });
+        const sortParams = { sortBy, sortDirection };
+        if (debouncedFilterTerm) {
+          sortParams.find = debouncedFilterTerm;
+        }
+        const params = new URLSearchParams(sortParams);
         const response = await fetch(`/api/tasks?${params}`, {
           headers: {
             'X-CSRF-TOKEN': token,
@@ -44,7 +48,11 @@ function TodosPage({ token }) {
     if (token) {
       fetchTodos();
     }
-  }, [token, sortBy, sortDirection]);
+  }, [token, sortBy, sortDirection, debouncedFilterTerm]);
+
+  function handleFilterChange(newFilterTerm) {
+    setFilterTerm(newFilterTerm);
+  }
 
   async function addTodo(todoTitle) {
     const newTodo = {
@@ -187,6 +195,7 @@ function TodosPage({ token }) {
         onSortByChange={setSortBy}
         onSortDirectionChange={setSortDirection}
       />
+      <FilterInput filterTerm={filterTerm} onFilterChange={handleFilterChange} />
       {isTodoListLoading ? <div>Loading todo list...</div> : null}
       <TodoForm onAddTodo={addTodo} />
       <TodoList todoList={todoList} onCompleteTodo={completeTodo} onUpdateTodo={updateTodo} />
