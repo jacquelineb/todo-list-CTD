@@ -1,7 +1,7 @@
 function SortBy({ sortBy, sortDirection, onSortByChange, onSortDirectionChange }) {
   return (
     <div>
-      <label htmlFor='sort-by'>Sort By</label>
+      <label htmlFor='sort-by'>Sort by</label>
       <select
         name='sort-by'
         id='sort-by'
