@@ -20,11 +20,11 @@ function TodosPage({ token }) {
     async function fetchTodos() {
       setIsTodoListLoading(true);
       try {
-        const sortParams = { sortBy, sortDirection };
+        const paramsObject = { sortBy, sortDirection, limit: 100 };
         if (debouncedFilterTerm) {
-          sortParams.find = debouncedFilterTerm;
+          paramsObject.find = debouncedFilterTerm;
         }
-        const params = new URLSearchParams({ ...sortParams, limit: 100 });
+        const params = new URLSearchParams(paramsObject);
         const response = await fetch(`/api/tasks?${params}`, {
           headers: {
             'X-CSRF-TOKEN': token,
