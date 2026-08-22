@@ -24,7 +24,7 @@ function TodosPage({ token }) {
         if (debouncedFilterTerm) {
           sortParams.find = debouncedFilterTerm;
         }
-        const params = new URLSearchParams(sortParams);
+        const params = new URLSearchParams({ ...sortParams, limit: 100 });
         const response = await fetch(`/api/tasks?${params}`, {
           headers: {
             'X-CSRF-TOKEN': token,
