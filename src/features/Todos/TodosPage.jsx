@@ -14,6 +14,7 @@ function TodosPage({ token }) {
   const [filterTerm, setFilterTerm] = useState('');
   const debouncedFilterTerm = useDebounce(filterTerm, 300);
   const [dataVersion, setDataVersion] = useState(0);
+  const [filterError, setFilterError] = useState('');
 
   useEffect(() => {
     async function fetchTodos() {
@@ -34,13 +35,18 @@ function TodosPage({ token }) {
         const result = await response.json();
         if (response.status === 200) {
           setTodoList(result.tasks);
+          setFilterError('');
         } else if (response.status === 401) {
           throw new Error('Unauthorized');
         } else {
           throw new Error('Error fetching todos.');
         }
       } catch (error) {
-        setError(`Error: ${error.name} | ${error.message}`);
+        if (debouncedFilterTerm || sortBy !== 'createdAt' || sortDirection !== 'desc') {
+          setFilterError(`Error filtering/sorting todos: ${error.message}`);
+        } else {
+          setError(`Error fetching todos: ${error.message}`);
+        }
       } finally {
         setIsTodoListLoading(false);
       }
@@ -199,6 +205,27 @@ function TodosPage({ token }) {
           </button>
         </div>
       ) : null}
+
+      {filterError ? (
+        <div>
+          <p>{filterError}</p>
+          <button type='button' onClick={() => setFilterError('')}>
+            Clear Filter Error
+          </button>
+          <button
+            type='button'
+            onClick={() => {
+              setFilterTerm('');
+              setSortBy('createdAt');
+              setSortDirection('desc');
+              setFilterError('');
+            }}
+          >
+            Reset Filters
+          </button>
+        </div>
+      ) : null}
+
       <SortBy
         sortBy={sortBy}
         sortDirection={sortDirection}
