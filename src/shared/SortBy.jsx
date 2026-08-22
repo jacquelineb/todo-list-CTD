@@ -5,7 +5,7 @@ function SortBy({ sortBy, sortDirection, onSortByChange, onSortDirectionChange }
       <select
         name='sort-by'
         id='sort-by'
-        defaultValue={sortBy}
+        value={sortBy}
         onChange={(e) => onSortByChange(e.target.value)}
       >
         <option value='createdAt'>Created At</option>
@@ -16,7 +16,7 @@ function SortBy({ sortBy, sortDirection, onSortByChange, onSortDirectionChange }
       <select
         name='order-by'
         id='order-by'
-        defaultValue={sortDirection}
+        value={sortDirection}
         onChange={(e) => onSortDirectionChange(e.target.value)}
       >
         <option value='desc'>Descending</option>
