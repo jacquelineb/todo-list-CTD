@@ -86,6 +86,14 @@ export function todoReducer(state, action) {
         dataVersion: state.dataVersion + 1,
       };
 
+    case TODO_ACTIONS.ADD_TODO_ERROR:
+      return {
+        ...state,
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload.newTodoId), // remove the todo that was optimistically added since it failed to be added on server side
+        isTodoListLoading: false,
+        error: action.payload.errorMessage,
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
