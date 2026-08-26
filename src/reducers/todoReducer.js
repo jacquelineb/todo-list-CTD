@@ -52,9 +52,18 @@ export function todoReducer(state, action) {
         ...state,
         todoList: action.payload.todos,
         isTodoListLoading: false,
-        error: '',
+        error: '', // not sure if necessary
         filterError: '',
       };
+
+    case TODO_ACTIONS.FETCH_ERROR:
+      return {
+        ...state,
+        isTodoListLoading: false,
+        error: action.payload.error,
+        filterError: action.payload.filterError,
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
