@@ -64,6 +64,14 @@ export function todoReducer(state, action) {
         filterError: action.payload.filterError,
       };
 
+    case TODO_ACTIONS.ADD_TODO_START:
+      return {
+        ...state,
+        todoList: [action.payload.newTodos, ...state.todoList], //optimistically updating the todo
+        isTodoListLoading: true,
+        error: '',
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
