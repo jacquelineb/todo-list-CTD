@@ -36,3 +36,17 @@ export const initialTodoState = {
   filterTerm: '',
   dataVersion: 0,
 };
+
+export function todoReducer(state, action) {
+  switch (action.type) {
+    case TODO_ACTIONS.FETCH_START:
+      return {
+        ...state,
+        isTodoListLoading: true,
+        error: '',
+        filterError: '',
+      };
+    default:
+      throw new Error(`Unknown action type: ${action.type}`);
+  }
+}
