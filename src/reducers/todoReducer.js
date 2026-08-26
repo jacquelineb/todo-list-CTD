@@ -67,9 +67,23 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.ADD_TODO_START:
       return {
         ...state,
-        todoList: [action.payload.newTodos, ...state.todoList], //optimistically updating the todo
+        todoList: [action.payload.newTodos, ...state.todoList], // optimistically updating the todo
         isTodoListLoading: true,
         error: '',
+      };
+
+    case TODO_ACTIONS.ADD_TODO_SUCCESS:
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) => {
+          if (todo.id === action.payload.newTodoId) {
+            return action.payload.addedTodo; // replace the temp todo from optimistic update with real todo from server response
+          }
+          return todo;
+        }),
+        isTodoListLoading: false,
+        error: '',
+        dataVersion: state.dataVersion + 1,
       };
 
     default:
