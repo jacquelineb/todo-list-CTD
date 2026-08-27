@@ -132,6 +132,15 @@ export function todoReducer(state, action) {
         dataVersion: state.dataVersion + 1,
       };
 
+    case TODO_ACTIONS.UPDATE_TODO_ERROR:
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) => {
+          todo.id === action.payload.originalTodo.id ? action.payload.originalTodo : todo;
+        }),
+        error: action.payload.error.message,
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
