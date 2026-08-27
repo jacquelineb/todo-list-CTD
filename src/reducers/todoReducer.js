@@ -141,6 +141,12 @@ export function todoReducer(state, action) {
         error: action.payload.error.message,
       };
 
+    case TODO_ACTIONS.SET_SORT:
+      return {
+        ...state,
+        sortBy: action.payload.sortBy,
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
