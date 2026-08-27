@@ -94,6 +94,15 @@ export function todoReducer(state, action) {
         error: action.payload.errorMessage,
       };
 
+    case TODO_ACTIONS.COMPLETE_TODO_START:
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) => {
+          todo.id === action.payload.id ? { ...todo, isCompleted: true } : todo;
+        }),
+        error: '',
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
