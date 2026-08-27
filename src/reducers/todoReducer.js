@@ -76,10 +76,8 @@ export function todoReducer(state, action) {
       return {
         ...state,
         todoList: state.todoList.map((todo) => {
-          if (todo.id === action.payload.newTodoId) {
-            return action.payload.addedTodo; // replace the temp todo from optimistic update with real todo from server response
-          }
-          return todo;
+          // replace the temp todo from the optimistic update with the real todo (action.payload.addedTodo) from the server response
+          todo.id === action.payload.newTodoId ? action.payload.addedTodo : todo;
         }),
         isTodoListLoading: false,
         error: '',
