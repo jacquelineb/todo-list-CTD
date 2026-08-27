@@ -101,6 +101,9 @@ export function todoReducer(state, action) {
         error: '',
       };
 
+    case TODO_ACTIONS.COMPLETE_TODO_SUCCESS:
+      return {};
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
