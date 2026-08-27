@@ -154,6 +154,12 @@ export function todoReducer(state, action) {
         sortDirection: action.payload.sortDirection,
       };
 
+    case TODO_ACTIONS.SET_FILTER:
+      return {
+        ...state,
+        filterTerm: action.payload.filterTerm,
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
