@@ -126,6 +126,12 @@ export function todoReducer(state, action) {
         error: '',
       };
 
+    case TODO_ACTIONS.UPDATE_TODO_SUCCESS:
+      return {
+        ...state,
+        dataVersion: state.dataVersion + 1,
+      };
+
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }
