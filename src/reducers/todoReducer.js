@@ -102,7 +102,20 @@ export function todoReducer(state, action) {
       };
 
     case TODO_ACTIONS.COMPLETE_TODO_SUCCESS:
-      return {};
+      return {
+        ...state,
+        dataVersion: state.dataVersion + 1,
+      };
+
+    case TODO_ACTIONS.COMPLETE_TODO_ERROR:
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) => {
+          // on failure to PATCH todo as completed, rollback to the original todo
+          todo.id === action.payload.originalTodo.id ? action.payload.originalTodo : todo;
+        }),
+        error: action.payload.error.message,
+      };
 
     default:
       throw new Error(`Unknown action type: ${action.type}`);
