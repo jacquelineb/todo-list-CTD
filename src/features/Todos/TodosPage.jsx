@@ -203,15 +203,22 @@ function TodosPage({ token }) {
   }
 
   async function updateTodo(editedTodo) {
-    let originalTodo;
-    const updatedTodos = todoList.map((todo) => {
-      if (todo.id === editedTodo.id) {
-        originalTodo = { ...todo };
-        return { ...editedTodo };
-      }
-      return todo;
+    // let originalTodo;
+    // const updatedTodos = todoList.map((todo) => {
+    //   if (todo.id === editedTodo.id) {
+    //     originalTodo = { ...todo };
+    //     return { ...editedTodo };
+    //   }
+    //   return todo;
+    // });
+    // setTodoList(updatedTodos);
+    const originalTodo = todoList.find((todo) => todo.id === editedTodo.id);
+    dispatch({
+      type: TODO_ACTIONS.UPDATE_TODO_START,
+      payload: {
+        editedTodo,
+      },
     });
-    setTodoList(updatedTodos);
 
     try {
       const response = await fetch(`/api/tasks/${editedTodo.id}`, {
@@ -230,17 +237,25 @@ function TodosPage({ token }) {
       if (response.status !== 200) {
         throw new Error('Unable to update todo');
       }
-      invalidateCache();
+      // invalidateCache();
+      dispatch({ type: TODO_ACTIONS.UPDATE_TODO_SUCCESS });
     } catch (error) {
-      setTodoList((previous) => {
-        return previous.map((todo) => {
-          if (todo.id === originalTodo.id) {
-            return { ...originalTodo };
-          }
-          return todo;
-        });
+      // setTodoList((previous) => {
+      //   return previous.map((todo) => {
+      //     if (todo.id === originalTodo.id) {
+      //       return { ...originalTodo };
+      //     }
+      //     return todo;
+      //   });
+      // });
+      // setError(error.message);
+      dispatch({
+        type: TODO_ACTIONS.UPDATE_TODO_ERROR,
+        payload: {
+          originalTodo,
+          message: error.message,
+        },
       });
-      setError(error.message);
     }
   }
 
