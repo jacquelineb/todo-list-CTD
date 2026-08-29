@@ -151,6 +151,12 @@ export function todoReducer(state, action) {
         error: '',
       };
 
+    case TODO_ACTIONS.CLEAR_FILTER_ERROR:
+      return {
+        ...state,
+        filterError: '',
+      };
+
     case TODO_ACTIONS.RESET_FILTERS:
       return {
         ...state,
