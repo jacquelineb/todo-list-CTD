@@ -57,7 +57,7 @@ function TodosPage({ token }) {
           dispatch({
             type: TODO_ACTIONS.FETCH_ERROR,
             payload: {
-              message: `Error filtering/sorting todos: ${error.message}`,
+              message: 'Error filtering/sorting todos',
               isFilterError: true,
             },
           });
