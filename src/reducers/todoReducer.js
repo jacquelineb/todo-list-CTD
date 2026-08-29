@@ -112,7 +112,7 @@ export function todoReducer(state, action) {
           // on failure to PATCH todo as completed, rollback to the original todo
           todo.id === action.payload.originalTodo.id ? action.payload.originalTodo : todo;
         }),
-        error: action.payload.error.message,
+        error: action.payload.message,
       };
 
     case TODO_ACTIONS.UPDATE_TODO_START:
@@ -136,7 +136,7 @@ export function todoReducer(state, action) {
         todoList: state.todoList.map((todo) => {
           todo.id === action.payload.originalTodo.id ? action.payload.originalTodo : todo;
         }),
-        error: action.payload.error.message,
+        error: action.payload.message,
       };
 
     case TODO_ACTIONS.SET_SORT:
