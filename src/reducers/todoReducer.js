@@ -79,7 +79,6 @@ export function todoReducer(state, action) {
           todo.id === action.payload.newTodoId ? action.payload.addedTodo : todo;
         }),
         isTodoListLoading: false,
-        error: '',
         dataVersion: state.dataVersion + 1,
       };
 
