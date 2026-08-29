@@ -79,7 +79,7 @@ function TodosPage({ token }) {
     dispatch({
       type: TODO_ACTIONS.ADD_TODO_START,
       payload: {
-        todos: [newTodo, ...todoList], // optimistically add todo to current todoList
+        newTodo,
       },
     });
     try {
@@ -101,10 +101,8 @@ function TodosPage({ token }) {
         dispatch({
           type: TODO_ACTIONS.ADD_TODO_SUCCESS,
           payload: {
-            // replace the temp todo from the optimistic update with the real todo (action.payload.addedTodo) from the server response
-            todos: todoList.map((todo) => {
-              todo.id === newTodo.id ? result : todo;
-            }),
+            tempTodoId: newTodo.id,
+            addedTodo: result,
           },
         });
       } else {
@@ -115,7 +113,7 @@ function TodosPage({ token }) {
         type: TODO_ACTIONS.ADD_TODO_ERROR,
         payload: {
           // remove the todo that was optimistically added since it failed to be added on server side
-          todos: todoList.filter((todo) => todo.id !== newTodo.id),
+          newTodoId: newTodo.id,
           message: error.message,
         },
       });
@@ -127,9 +125,7 @@ function TodosPage({ token }) {
     dispatch({
       type: TODO_ACTIONS.COMPLETE_TODO_START,
       payload: {
-        todos: todoList.map((todo) => {
-          todo.id === id ? { ...todo, isCompleted: true } : todo;
-        }),
+        id,
       },
     });
 
@@ -153,9 +149,7 @@ function TodosPage({ token }) {
         type: TODO_ACTIONS.COMPLETE_TODO_ERROR,
         payload: {
           // on failure to PATCH todo as completed, rollback to the original todo and set error message
-          todos: todoList.map((todo) => {
-            todo.id === originalTodo.id ? originalTodo : todo;
-          }),
+          originalTodo,
           message: error.message,
         },
       });
@@ -167,9 +161,7 @@ function TodosPage({ token }) {
     dispatch({
       type: TODO_ACTIONS.UPDATE_TODO_START,
       payload: {
-        todos: todoList.map((todo) => {
-          todo.id === editedTodo.id ? editedTodo : todo;
-        }),
+        editedTodo,
       },
     });
 
@@ -195,9 +187,7 @@ function TodosPage({ token }) {
       dispatch({
         type: TODO_ACTIONS.UPDATE_TODO_ERROR,
         payload: {
-          todos: todoList.map((todo) => {
-            todo.id === originalTodo.id ? originalTodo : todo;
-          }),
+          originalTodo,
           message: error.message,
         },
       });

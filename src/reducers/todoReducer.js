@@ -66,7 +66,7 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.ADD_TODO_START:
       return {
         ...state,
-        todoList: action.payload.todos,
+        todoList: [action.payload.newTodo, ...state.todoList],
         isTodoListLoading: true,
         error: '',
       };
@@ -74,7 +74,10 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.ADD_TODO_SUCCESS:
       return {
         ...state,
-        todoList: action.payload.todos,
+        // replace the temp todo from the optimistic update with the real todo (action.payload.addedTodo) from the server response
+        todoList: state.todoList.map((todo) => {
+          return todo.id === action.payload.tempTodoId ? action.payload.addedTodo : todo;
+        }),
         isTodoListLoading: false,
         dataVersion: state.dataVersion + 1,
       };
@@ -82,7 +85,7 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.ADD_TODO_ERROR:
       return {
         ...state,
-        todoList: action.payload.todos,
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload.newTodoId),
         isTodoListLoading: false,
         error: action.payload.message,
       };
@@ -90,7 +93,9 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.COMPLETE_TODO_START:
       return {
         ...state,
-        todoList: action.payload.todos,
+        todoList: state.todoList.map((todo) => {
+          return todo.id === action.payload.id ? { ...todo, isCompleted: true } : todo;
+        }),
         error: '',
       };
 
@@ -103,14 +108,20 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.COMPLETE_TODO_ERROR:
       return {
         ...state,
-        todoList: action.payload.todos,
+        todoList: state.todoList.map((todo) => {
+          return todo.id === action.payload.originalTodo.id
+            ? action.payload.originalTodo
+            : todo;
+        }),
         error: action.payload.message,
       };
 
     case TODO_ACTIONS.UPDATE_TODO_START:
       return {
         ...state,
-        todoList: action.payload.todos,
+        todoList: state.todoList.map((todo) => {
+          return todo.id === action.payload.editedTodo.id ? action.payload.editedTodo : todo;
+        }),
         error: '',
       };
 
@@ -123,7 +134,11 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.UPDATE_TODO_ERROR:
       return {
         ...state,
-        todoList: action.payload.todos,
+        todoList: state.todoList.map((todo) => {
+          return todo.id === action.payload.originalTodo.id
+            ? action.payload.originalTodo
+            : todo;
+        }),
         error: action.payload.message,
       };
 
