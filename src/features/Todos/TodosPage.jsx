@@ -15,7 +15,6 @@ function TodosPage({ token }) {
   // const [filterTerm, setFilterTerm] = useState('');
   // const [dataVersion, setDataVersion] = useState(0);
   // const [filterError, setFilterError] = useState('');
-  const debouncedFilterTerm = useDebounce(filterTerm, 300);
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
   const {
     todoList,
@@ -27,6 +26,7 @@ function TodosPage({ token }) {
     filterTerm,
     dataVersion,
   } = state;
+  const debouncedFilterTerm = useDebounce(filterTerm, 300);
 
   useEffect(() => {
     async function fetchTodos() {
