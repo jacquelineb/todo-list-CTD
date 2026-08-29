@@ -236,10 +236,7 @@ function TodosPage({ token }) {
           <button
             type='button'
             onClick={() => {
-              setFilterTerm('');
-              setSortBy('createdAt');
-              setSortDirection('desc');
-              setFilterError('');
+              dispatch({ type: TODO_ACTIONS.RESET_FILTERS });
             }}
           >
             Reset Filters
