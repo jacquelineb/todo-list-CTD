@@ -53,8 +53,6 @@ export function todoReducer(state, action) {
         ...state,
         todoList: action.payload.todos,
         isTodoListLoading: false,
-        error: '', // not sure if necessary
-        filterError: '',
       };
 
     case TODO_ACTIONS.FETCH_ERROR:
