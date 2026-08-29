@@ -75,8 +75,6 @@ function TodosPage({ token }) {
             },
           });
         }
-      } finally {
-        setIsTodoListLoading(false);
       }
     }
 
