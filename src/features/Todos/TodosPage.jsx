@@ -30,7 +30,8 @@ function TodosPage({ token }) {
 
   useEffect(() => {
     async function fetchTodos() {
-      setIsTodoListLoading(true);
+      // setIsTodoListLoading(true);
+      dispatch({ type: TODO_ACTIONS.FETCH_START });
       try {
         const paramsObject = { sortBy, sortDirection, limit: 100 };
         if (debouncedFilterTerm) {
@@ -46,8 +47,9 @@ function TodosPage({ token }) {
 
         const result = await response.json();
         if (response.status === 200) {
-          setTodoList(result.tasks);
-          setFilterError('');
+          // setTodoList(result.tasks);
+          // setFilterError('');
+          dispatch({ type: TODO_ACTIONS.FETCH_SUCCESS, payload: { todos: result.tasks } });
         } else if (response.status === 401) {
           throw new Error('Unauthorized');
         } else {
@@ -55,9 +57,23 @@ function TodosPage({ token }) {
         }
       } catch (error) {
         if (debouncedFilterTerm || sortBy !== 'createdAt' || sortDirection !== 'desc') {
-          setFilterError(`Error filtering/sorting todos: ${error.message}`);
+          // setFilterError(`Error filtering/sorting todos: ${error.message}`);
+          dispatch({
+            type: TODO_ACTIONS.FETCH_ERROR,
+            payload: {
+              message: `Error filtering/sorting todos: ${error.message}`,
+              isFilterError: true,
+            },
+          });
         } else {
-          setError(`Error fetching todos: ${error.message}`);
+          // setError(`Error fetching todos: ${error.message}`);
+          dispatch({
+            type: TODO_ACTIONS.FETCH_ERROR,
+            payload: {
+              message: `Error fetching todos: ${error.message}`,
+              isFilterError: false,
+            },
+          });
         }
       } finally {
         setIsTodoListLoading(false);

@@ -61,8 +61,8 @@ export function todoReducer(state, action) {
       return {
         ...state,
         isTodoListLoading: false,
-        error: action.payload.error,
-        filterError: action.payload.filterError,
+        error: action.payload.isFilterError ? state.error : action.payload.message,
+        filterError: action.payload.isFilterError ? action.payload.message : state.filterError,
       };
 
     case TODO_ACTIONS.ADD_TODO_START:
