@@ -66,7 +66,7 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.ADD_TODO_START:
       return {
         ...state,
-        todoList: [action.payload.newTodos, ...state.todoList], // optimistically updating the todo
+        todoList: [action.payload.newTodo, ...state.todoList], // optimistically updating the todo
         isTodoListLoading: true,
         error: '',
       };
