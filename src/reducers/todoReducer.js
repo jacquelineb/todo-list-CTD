@@ -87,7 +87,7 @@ export function todoReducer(state, action) {
         ...state,
         todoList: state.todoList.filter((todo) => todo.id !== action.payload.newTodoId), // remove the todo that was optimistically added since it failed to be added on server side
         isTodoListLoading: false,
-        error: action.payload.errorMessage,
+        error: action.payload.message,
       };
 
     case TODO_ACTIONS.COMPLETE_TODO_START:

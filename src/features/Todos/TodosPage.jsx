@@ -98,8 +98,9 @@ function TodosPage({ token }) {
       title: todoTitle,
       isCompleted: false,
     };
-    setTodoList((previous) => [newTodo, ...previous]);
-    setIsTodoListLoading(true);
+    // setTodoList((previous) => [newTodo, ...previous]);
+    // setIsTodoListLoading(true);
+    dispatch({ type: TODO_ACTIONS.ADD_TODO_START, payload: { newTodo } });
     try {
       const response = await fetch('/api/tasks', {
         method: 'POST',
@@ -117,24 +118,36 @@ function TodosPage({ token }) {
       if (response.status === 201) {
         const result = await response.json();
         // replace the temp todo with the real todo from the server response
-        setTodoList((previous) => {
-          return previous.map((todo) => {
-            if (todo.id === newTodo.id) {
-              return result;
-            }
-            return todo;
-          });
+        // setTodoList((previous) => {
+        //   return previous.map((todo) => {
+        //     if (todo.id === newTodo.id) {
+        //       return result;
+        //     }
+        //     return todo;
+        //   });
+        // });
+        // invalidateCache();
+        dispatch({
+          type: TODO_ACTIONS.ADD_TODO_SUCCESS,
+          payload: {
+            newTodoId: newTodo.id,
+            addedTodo: result,
+          },
         });
-        invalidateCache();
       } else {
         throw new Error('Failed to add todo');
       }
     } catch (error) {
       // remove the failed todo from the list and set an error message
-      setTodoList((previous) => previous.filter((todo) => todo.id !== newTodo.id));
-      setError(error.message);
-    } finally {
-      setIsTodoListLoading(false);
+      // setTodoList((previous) => previous.filter((todo) => todo.id !== newTodo.id));
+      // setError(error.message);
+      dispatch({
+        type: TODO_ACTIONS.ADD_TODO_ERROR,
+        payload: {
+          newTodoId: newTodo.id,
+          message: error.message,
+        },
+      });
     }
   }
 
