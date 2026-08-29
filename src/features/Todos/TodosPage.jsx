@@ -78,10 +78,6 @@ function TodosPage({ token }) {
     }
   }, [token, sortBy, sortDirection, debouncedFilterTerm]);
 
-  function handleFilterChange(newFilterTerm) {
-    setFilterTerm(newFilterTerm);
-  }
-
   async function addTodo(todoTitle) {
     const newTodo = {
       id: Date.now(),
@@ -264,7 +260,12 @@ function TodosPage({ token }) {
           });
         }}
       />
-      <FilterInput filterTerm={filterTerm} onFilterChange={handleFilterChange} />
+      <FilterInput
+        filterTerm={filterTerm}
+        onFilterChange={(newFilterTerm) => {
+          dispatch({ type: TODO_ACTIONS.SET_FILTER, payload: { filterTerm: newFilterTerm } });
+        }}
+      />
       {isTodoListLoading ? <div>Loading todo list...</div> : null}
       <TodoForm onAddTodo={addTodo} />
       <TodoList
