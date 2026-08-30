@@ -74,6 +74,7 @@ export function AuthProvider({ children }) {
     } finally {
       setEmail('');
       setToken('');
+    }
   };
 
   // Context value object
