@@ -65,6 +65,7 @@ export function AuthProvider({ children }) {
       };
 
       const res = await fetch('/api/users/logoff', options);
+      return { success: true };
     } catch (error) {
       return {
         success: false,
