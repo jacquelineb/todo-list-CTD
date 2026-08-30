@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     if (!token) {
       setEmail('');
-      return;
+      return { success: true };
     }
 
     try {
@@ -74,7 +74,6 @@ export function AuthProvider({ children }) {
     } finally {
       setEmail('');
       setToken('');
-    }
   };
 
   // Context value object
