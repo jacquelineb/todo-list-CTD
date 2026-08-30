@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const logout = async (useEmail) => {
+  const logout = async () => {
     if (!token) {
       setEmail('');
       return;
