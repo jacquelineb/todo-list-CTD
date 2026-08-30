@@ -235,14 +235,16 @@ function TodosPage() {
             type: TODO_ACTIONS.SET_SORT,
             payload: {
               sortBy: newSortBy,
+              sortDirection,
             },
           });
         }}
         onSortDirectionChange={(newSortDirection) => {
           dispatch({
-            type: TODO_ACTIONS.SET_SORT_DIRECTION,
+            type: TODO_ACTIONS.SET_SORT,
             payload: {
               sortDirection: newSortDirection,
+              sortBy,
             },
           });
         }}

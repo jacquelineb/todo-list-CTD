@@ -21,7 +21,6 @@ export const TODO_ACTIONS = {
 
   // UI operations
   SET_SORT: 'SET_SORT',
-  SET_SORT_DIRECTION: 'SET_SORT_DIRECTION',
   SET_FILTER: 'SET_FILTER',
   CLEAR_ERROR: 'CLEAR_ERROR',
   CLEAR_FILTER_ERROR: 'CLEAR_FILTER_ERROR',
@@ -147,11 +146,6 @@ export function todoReducer(state, action) {
       return {
         ...state,
         sortBy: action.payload.sortBy,
-      };
-
-    case TODO_ACTIONS.SET_SORT_DIRECTION:
-      return {
-        ...state,
         sortDirection: action.payload.sortDirection,
       };
 
