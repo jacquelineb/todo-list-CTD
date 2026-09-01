@@ -52,6 +52,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     if (!token) {
       setEmail('');
+      setToken('');
       return { success: true };
     }
 
