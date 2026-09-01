@@ -84,7 +84,6 @@ export function todoReducer(state, action) {
       return {
         ...state,
         todoList: state.todoList.filter((todo) => todo.id !== action.payload.newTodoId),
-        isTodoListLoading: false,
         error: action.payload.message,
       };
 
