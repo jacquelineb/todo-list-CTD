@@ -66,8 +66,10 @@ export function AuthProvider({ children }) {
       };
 
       const res = await fetch('/api/users/logoff', options);
-      setEmail('');
-      setToken('');
+      if (res.status === 200 || res.status === 401) {
+        setEmail('');
+        setToken('');
+      }
       return { success: true };
     } catch (error) {
       setEmail('');
