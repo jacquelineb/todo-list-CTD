@@ -69,6 +69,8 @@ export function AuthProvider({ children }) {
       setToken('');
       return { success: true };
     } catch (error) {
+      setEmail('');
+      setToken('');
       return {
         success: false,
         error: 'Network error during logout',
