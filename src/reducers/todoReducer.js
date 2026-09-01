@@ -67,7 +67,6 @@ export function todoReducer(state, action) {
       return {
         ...state,
         todoList: [action.payload.newTodo, ...state.todoList],
-        isTodoListLoading: true,
         error: '',
       };
 
@@ -78,7 +77,6 @@ export function todoReducer(state, action) {
         todoList: state.todoList.map((todo) => {
           return todo.id === action.payload.tempTodoId ? action.payload.addedTodo : todo;
         }),
-        isTodoListLoading: false,
         dataVersion: state.dataVersion + 1,
       };
 
