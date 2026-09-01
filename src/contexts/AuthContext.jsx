@@ -65,15 +65,14 @@ export function AuthProvider({ children }) {
       };
 
       const res = await fetch('/api/users/logoff', options);
+      setEmail('');
+      setToken('');
       return { success: true };
     } catch (error) {
       return {
         success: false,
         error: 'Network error during logout',
       };
-    } finally {
-      setEmail('');
-      setToken('');
     }
   };
 
