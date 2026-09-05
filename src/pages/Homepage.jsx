@@ -15,7 +15,7 @@ function Homepage() {
 
   return (
     <div>
-      <p>Redirecting</p>
+      <p>Redirecting...</p>
     </div>
   );
 }
