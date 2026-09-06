@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
+import { useAuth } from '../contexts/AuthContext.jsx';
 function NotFoundPage() {
+  const { isAuthenticated } = useAuth();
   return (
     <div>
       <h2>Error 404 - Page not found.</h2>
@@ -10,6 +12,11 @@ function NotFoundPage() {
         <li>
           <Link to='/about'>About</Link>
         </li>
+        {isAuthenticated && (
+          <li>
+            <Link to='/profile'>Profile</Link>
+          </li>
+        )}
       </ul>
     </div>
   );
