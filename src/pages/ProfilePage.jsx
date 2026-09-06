@@ -32,7 +32,6 @@ function ProfilePage() {
         }
 
         const result = await response.json();
-        console.log(result);
         const todos = result.tasks;
 
         // Calculate statistics
