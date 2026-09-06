@@ -33,7 +33,7 @@ function ProfilePage() {
         }
 
         const result = await response.json();
-        const todos = result.tasks ? result.tasks : [];
+        const todos = (Array.isArray(result) ? result : result.tasks) || [];
 
         // Calculate statistics
         const total = todos.length;
@@ -69,6 +69,7 @@ function ProfilePage() {
                 <h3>Account Information</h3>
                 <p>Name: {name}</p>
                 <p>Account Status: Active</p>
+                <p>Token: {token}</p>
               </section>
               <section>
                 <h3>Statistics</h3>
