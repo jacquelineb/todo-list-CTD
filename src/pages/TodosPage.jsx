@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
-import TodoForm from '../Todos/TodoForm.jsx';
-import TodoList from '../Todos/TodoList/TodoList.jsx';
+import TodoForm from '../features/Todos/TodoForm.jsx';
+import TodoList from '../features/Todos/TodoList/TodoList.jsx';
 import SortBy from '../shared/SortBy.jsx';
 import FilterInput from '../shared/FilterInput.jsx';
 import { useAuth } from '../contexts/AuthContext.jsx';
