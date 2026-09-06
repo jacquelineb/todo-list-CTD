@@ -7,11 +7,12 @@ function RequireAuth({ children }) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const from = location.state?.from?.pathname;
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login', { state: { location } }); // not sure if state object in options is correct
+      navigate('/login', { state: from }); // not sure if state object in options is correct
     }
-  }, [isAuthenticated, navigate, location]);
+  }, [isAuthenticated, navigate, from]);
   return <>{!isAuthenticated ? <div>Loading...</div> : children}</>;
 }
 
