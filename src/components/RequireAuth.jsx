@@ -1,0 +1,18 @@
+import { useLocation, useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext.jsx';
+
+function RequireAuth({ children }) {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login', { state: { location } }); // not sure if state object in options is correct
+    }
+  }, [isAuthenticated, navigate, location]);
+  return <div>{!isAuthenticated ? 'Loading...' : { children }}</div>;
+}
+
+export default RequireAuth;
