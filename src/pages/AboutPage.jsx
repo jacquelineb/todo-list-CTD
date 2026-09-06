@@ -2,7 +2,9 @@ function AboutPage() {
   return (
     <div>
       <h2>About</h2>
-      <p>This is a todo list application built throughout Code the Dream's 11-week course.</p>
+      <p>
+        This is a todo list application built throughout Code the Dream's 11-week React course.
+      </p>
       <p>
         With each lesson we learned new React concepts and applied them to this project to build
         a fully functional Todo List application
