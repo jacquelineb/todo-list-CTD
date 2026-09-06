@@ -70,18 +70,15 @@ function ProfilePage() {
                 <p>Name: {name}</p>
                 <p>Account Status: Active</p>
               </section>
-
-              {todoStats.total > 0 && (
-                <section>
-                  <h3>Statistics</h3>
-                  <ul>
-                    <li>Total Todos: {todoStats.total}</li>
-                    <li>Completed Todos: {todoStats.completed}</li>
-                    <li>Active Todos: {todoStats.active}</li>
-                  </ul>
-                  <p>Completion Percentage: {completionPercentage}%</p>
-                </section>
-              )}
+              <section>
+                <h3>Statistics</h3>
+                <ul>
+                  <li>Total Todos: {todoStats.total}</li>
+                  <li>Completed Todos: {todoStats.completed}</li>
+                  <li>Active Todos: {todoStats.active}</li>
+                </ul>
+                <p>Completion Percentage: {completionPercentage}%</p>
+              </section>
             </>
           )}
         </div>
