@@ -51,7 +51,8 @@ function ProfilePage() {
     fetchTodoStats();
   }, [token]);
 
-  const completionPercentage = (todoStats.completed / todoStats.total) * 100;
+  const completionPercentage =
+    todoStats.total > 0 ? (todoStats.completed / todoStats.total) * 100 : 0;
 
   return (
     <>
@@ -76,7 +77,7 @@ function ProfilePage() {
                   <li>Completed Todos: {todoStats.completed}</li>
                   <li>Active Todos: {todoStats.active}</li>
                 </ul>
-                {todoStats.total > 0 && <p>Completion Percentage: {completionPercentage}%</p>}
+                <p>Completion Percentage: {completionPercentage}%</p>
               </section>
             </>
           )}
