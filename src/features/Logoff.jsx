@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 function Logoff() {
   const [error, setError] = useState('');
-  const [isLoggingOff, setIsLoggingOff] = useState('false');
+  const [isLoggingOff, setIsLoggingOff] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -22,9 +22,12 @@ function Logoff() {
     }
   }
   return (
-    <button type='button' onClick={handleLogoff}>
-      Log Off
-    </button>
+    <>
+      {error ? <p>{error}</p> : null}
+      <button type='button' onClick={handleLogoff}>
+        Log Off
+      </button>
+    </>
   );
 }
 
