@@ -12,9 +12,18 @@ function NotFoundPage() {
         <li>
           <Link to='/about'>About</Link>
         </li>
-        {isAuthenticated && (
+        {isAuthenticated ? (
+          <>
+            <li>
+              <Link to='/todos'>Todos</Link>
+            </li>
+            <li>
+              <Link to='/profile'>Profile</Link>
+            </li>
+          </>
+        ) : (
           <li>
-            <Link to='/profile'>Profile</Link>
+            <Link to='/login'>Login</Link>
           </li>
         )}
       </ul>
