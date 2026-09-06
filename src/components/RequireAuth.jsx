@@ -12,7 +12,11 @@ function RequireAuth({ children }) {
       navigate('/login', { replace: true, state: { from: location } });
     }
   }, [isAuthenticated, navigate, location]);
-  return <>{!isAuthenticated ? <div>Loading...</div> : children}</>;
+
+  if (!isAuthenticated) {
+    return <div>Redirecting...</div>;
+  }
+  return children;
 }
 
 export default RequireAuth;
