@@ -3,9 +3,14 @@ function NotFoundPage() {
   return (
     <div>
       <h2>Error 404 - Page not found.</h2>
-      <div>
-        <Link to='/'>Return to homepage</Link>
-      </div>
+      <ul>
+        <li>
+          <Link to='/'>Return Home</Link>
+        </li>
+        <li>
+          <Link to='/about'>About</Link>
+        </li>
+      </ul>
     </div>
   );
 }
