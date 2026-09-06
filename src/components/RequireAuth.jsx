@@ -12,7 +12,7 @@ function RequireAuth({ children }) {
       navigate('/login', { state: { location } }); // not sure if state object in options is correct
     }
   }, [isAuthenticated, navigate, location]);
-  return <div>{!isAuthenticated ? 'Loading...' : { children }}</div>;
+  return <>{!isAuthenticated ? <div>Loading...</div> : { children }}</>;
 }
 
 export default RequireAuth;
