@@ -10,7 +10,7 @@ function RequireAuth({ children }) {
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login', {
-        replace: true,
+        replace: false,
         state: { from: location },
       });
     }
