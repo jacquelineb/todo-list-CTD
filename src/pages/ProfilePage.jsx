@@ -32,6 +32,7 @@ function ProfilePage() {
         }
 
         const result = await response.json();
+        console.log(result);
         const todos = result.tasks;
 
         // Calculate statistics
@@ -62,6 +63,11 @@ function ProfilePage() {
             <>
               <h2>Welcome back, {email}</h2>
               <section>
+                <h3>Account Information</h3>
+                <p>Name: {email}</p>
+                <p>Account Status: {todoStats.total === 0 ? 'Inactive' : 'Active'}</p>
+              </section>
+              <section>
                 <h3>Statistics</h3>
                 <ul>
                   <li>Total Todos: {todoStats.total}</li>
@@ -69,9 +75,7 @@ function ProfilePage() {
                   <li>Active Todos: {todoStats.active}</li>
                 </ul>
                 {todoStats.total > 0 && (
-                  <p>
-                    `Completion Percentage: ${(todoStats.completed / todoStats.total) * 100}%`
-                  </p>
+                  <p>Completion Percentage: {(todoStats.completed / todoStats.total) * 100}%</p>
                 )}
               </section>
             </>
