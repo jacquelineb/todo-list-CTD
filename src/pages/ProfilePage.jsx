@@ -6,6 +6,7 @@ function ProfilePage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { email, token } = useAuth();
+  const name = email;
 
   useEffect(() => {
     async function fetchTodoStats() {
@@ -50,6 +51,8 @@ function ProfilePage() {
     fetchTodoStats();
   }, [token]);
 
+  const completionPercentage = (todoStats.completed / todoStats.total) * 100;
+
   return (
     <>
       {loading ? (
@@ -63,8 +66,8 @@ function ProfilePage() {
               <h2>Welcome back, {email}</h2>
               <section>
                 <h3>Account Information</h3>
-                <p>Name: {email}</p>
-                <p>Account Status: {todoStats.total === 0 ? 'Inactive' : 'Active'}</p>
+                <p>Name: {name}</p>
+                <p>Account Status: Active</p>
               </section>
               <section>
                 <h3>Statistics</h3>
@@ -73,9 +76,7 @@ function ProfilePage() {
                   <li>Completed Todos: {todoStats.completed}</li>
                   <li>Active Todos: {todoStats.active}</li>
                 </ul>
-                {todoStats.total > 0 && (
-                  <p>Completion Percentage: {(todoStats.completed / todoStats.total) * 100}%</p>
-                )}
+                {todoStats.total > 0 && <p>Completion Percentage: {completionPercentage}%</p>}
               </section>
             </>
           )}
