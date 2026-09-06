@@ -7,10 +7,7 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import RequireAuth from './components/RequireAuth.jsx';
 import Header from './shared/Header.jsx';
-// import Logon from './features/Logon.jsx';
-// import TodosPage from './features/Todos/TodosPage.jsx';
 import './App.css';
-import { useAuth } from './contexts/AuthContext.jsx';
 
 function App() {
   return (
