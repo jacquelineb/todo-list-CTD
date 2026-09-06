@@ -5,28 +5,30 @@ function NotFoundPage() {
   return (
     <div>
       <h2>Error 404 - Page not found.</h2>
-      <ul>
-        <li>
-          <Link to='/'>Return Home</Link>
-        </li>
-        <li>
-          <Link to='/about'>About</Link>
-        </li>
-        {isAuthenticated ? (
-          <>
-            <li>
-              <Link to='/todos'>Todos</Link>
-            </li>
-            <li>
-              <Link to='/profile'>Profile</Link>
-            </li>
-          </>
-        ) : (
+      <nav>
+        <ul>
           <li>
-            <Link to='/login'>Login</Link>
+            <Link to='/'>Return Home</Link>
           </li>
-        )}
-      </ul>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link to='/todos'>Todos</Link>
+              </li>
+              <li>
+                <Link to='/profile'>Profile</Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to='/login'>Login</Link>
+            </li>
+          )}
+        </ul>
+      </nav>
     </div>
   );
 }
