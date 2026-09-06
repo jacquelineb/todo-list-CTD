@@ -68,8 +68,11 @@ function ProfilePage() {
                   <li>Completed Todos: {todoStats.completed}</li>
                   <li>Active Todos: {todoStats.active}</li>
                 </ul>
-                {todoStats.total > 0 &&
-                  `Completion Percentage: ${(todoStats.completed / todoStats.total) * 100}%`}
+                {todoStats.total > 0 && (
+                  <p>
+                    `Completion Percentage: ${(todoStats.completed / todoStats.total) * 100}%`
+                  </p>
+                )}
               </section>
             </>
           )}
