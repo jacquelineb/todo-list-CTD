@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext.jsx';
 
-function Homepage() {
+function HomePage() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,4 +20,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;
