@@ -26,11 +26,16 @@ function LoginPage() {
     e.preventDefault();
     setAuthError('');
     setIsLoggingOn(true);
-    const response = await login(email, password);
-    if (!response.success) {
-      setAuthError(response.error);
+    try {
+      const response = await login(email, password);
+      if (!response.success) {
+        setAuthError(response.error);
+      }
+    } catch (error) {
+      setAuthError(`Error: ${error.message}`);
+    } finally {
+      setIsLoggingOn(false);
     }
-    setIsLoggingOn(false);
   }
 
   return (
