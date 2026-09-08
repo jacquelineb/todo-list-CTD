@@ -22,7 +22,8 @@ function ProfilePage() {
           credentials: 'include',
         };
 
-        const response = await fetch('/api/tasks', options);
+        const params = new URLSearchParams({ limit: 100 });
+        const response = await fetch(`/api/tasks?${params}`, options);
 
         if (response.status === 401) {
           throw new Error('Unauthorized');
@@ -77,7 +78,7 @@ function ProfilePage() {
                   <li>Completed Todos: {todoStats.completed}</li>
                   <li>Active Todos: {todoStats.active}</li>
                 </ul>
-                <p>Completion Percentage: {completionPercentage}%</p>
+                <p>Completion Percentage: {completionPercentage.toFixed(1)}%</p>
               </section>
             </>
           )}
