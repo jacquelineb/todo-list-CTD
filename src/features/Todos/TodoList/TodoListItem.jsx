@@ -26,8 +26,6 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
   }
 
   function handleDelete() {
-    console.log('TODO: delete a todo');
-    console.log(todo.id);
     onDeleteTodo(todo.id);
   }
 
