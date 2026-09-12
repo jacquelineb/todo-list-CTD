@@ -48,16 +48,20 @@ function TodosPage() {
         if (response.status === 200) {
           dispatch({ type: TODO_ACTIONS.FETCH_SUCCESS, payload: { todos: result.tasks } });
         } else if (response.status === 401) {
-          throw new Error('Unauthorized');
+          throw new Error('Unauthorized. Please sign back in and try again.');
         } else {
-          throw new Error('Error fetching todos.');
+          throw new Error('An unknown error occurred while fetching todos.');
         }
       } catch (error) {
-        if (debouncedFilterTerm || sortBy !== 'createdAt' || sortDirection !== 'desc') {
+        if (
+          debouncedFilterTerm ||
+          ['createdAt', 'title'].indexOf(sortBy) === -1 ||
+          ['desc', 'asc'].indexOf(sortDirection) === -1
+        ) {
           dispatch({
             type: TODO_ACTIONS.FETCH_ERROR,
             payload: {
-              message: 'Error filtering/sorting todos',
+              message: 'An error occurred while filtering or sorting the todo list.',
               isFilterError: true,
             },
           });
@@ -65,7 +69,7 @@ function TodosPage() {
           dispatch({
             type: TODO_ACTIONS.FETCH_ERROR,
             payload: {
-              message: `Error fetching todos: ${error.message}`,
+              message: error.message,
               isFilterError: false,
             },
           });

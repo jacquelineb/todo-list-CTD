@@ -26,11 +26,11 @@ function ProfilePage() {
         const response = await fetch(`/api/tasks?${params}`, options);
 
         if (response.status === 401) {
-          throw new Error('Unauthorized');
+          throw new Error('Unauthorized. Please sign back in and try again.');
         }
 
         if (!response.ok) {
-          throw new Error('Failed to fetch todos');
+          throw new Error('Failed to fetch todo list.');
         }
 
         const result = await response.json();
