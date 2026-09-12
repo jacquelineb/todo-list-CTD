@@ -13,7 +13,7 @@ function LoginPage() {
   const location = useLocation();
 
   // Get intended destination from location state, default to /todos
-  const from = location.state?.from?.pathname || '/todos';
+  const from = location.state?.from || '/todos';
 
   // Redirect if already authenticated
   useEffect(() => {
