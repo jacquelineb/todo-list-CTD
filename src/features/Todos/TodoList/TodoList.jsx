@@ -3,7 +3,7 @@ import TodoListItem from './TodoListItem.jsx';
 
 function TodoList({
   todoList,
-  onCompleteTodo,
+  onToggleTodoCompletion,
   onUpdateTodo,
   onDeleteTodo,
   dataVersion,
@@ -52,7 +52,7 @@ function TodoList({
             <TodoListItem
               key={todo.id}
               todo={todo}
-              onCompleteTodo={onCompleteTodo}
+              onToggleTodoCompletion={onToggleTodoCompletion}
               onUpdateTodo={onUpdateTodo}
               onDeleteTodo={onDeleteTodo}
             />

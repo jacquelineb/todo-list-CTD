@@ -162,10 +162,10 @@ function TodosPage() {
     }
   }
 
-  async function completeTodo(id) {
+  async function toggleTodoCompletion(id) {
     const originalTodo = todoList.find((todo) => todo.id === id);
     dispatch({
-      type: TODO_ACTIONS.COMPLETE_TODO_START,
+      type: TODO_ACTIONS.TOGGLE_TODO_COMPLETION_START,
       payload: { id },
     });
 
@@ -177,18 +177,17 @@ function TodosPage() {
           'X-CSRF-TOKEN': token,
         },
         credentials: 'include',
-        body: JSON.stringify({ isCompleted: true }),
+        body: JSON.stringify({ isCompleted: !originalTodo.isCompleted }),
       });
 
       if (response.status !== 200) {
-        throw new Error('Error completing todo');
+        throw new Error('An error occurred while setting todo completion status');
       }
-      dispatch({ type: TODO_ACTIONS.COMPLETE_TODO_SUCCESS });
+      dispatch({ type: TODO_ACTIONS.TOGGLE_TODO_COMPLETION_SUCCESS });
     } catch (error) {
       dispatch({
-        type: TODO_ACTIONS.COMPLETE_TODO_ERROR,
+        type: TODO_ACTIONS.TOGGLE_TODO_COMPLETION_ERROR,
         payload: {
-          // on failure to PATCH todo as completed, rollback to the original todo and set error message
           originalTodo,
           message: error.message,
         },
@@ -298,7 +297,8 @@ function TodosPage() {
       <TodoForm onAddTodo={addTodo} />
       <TodoList
         todoList={todoList}
-        onCompleteTodo={completeTodo}
+        // onCompleteTodo={completeTodo}
+        onToggleTodoCompletion={toggleTodoCompletion}
         onUpdateTodo={updateTodo}
         onDeleteTodo={deleteTodo}
         dataVersion={dataVersion}

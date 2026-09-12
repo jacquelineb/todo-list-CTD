@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TextInputWithLabel from '../../../shared/TextInputWithLabel.jsx';
 import { isValidTodoTitle } from '../../../utils/todoValidation.js';
 
-function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
+function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [workingTitle, setWorkingTitle] = useState(todo.title);
 
@@ -61,7 +61,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo, onDeleteTodo }) {
                 type='checkbox'
                 id={`checkbox${todo.id}`}
                 checked={todo.isCompleted}
-                onChange={() => onCompleteTodo(todo.id)}
+                onChange={() => onToggleTodoCompletion(todo.id)}
               />
             </label>
             <span onClick={() => setIsEditing(true)}>{todo.title}</span>

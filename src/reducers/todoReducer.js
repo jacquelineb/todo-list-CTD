@@ -14,10 +14,10 @@ export const TODO_ACTIONS = {
   DELETE_TODO_SUCCESS: 'DELETE_TODO_SUCCESS',
   DELETE_TODO_ERROR: 'DELETE_TODO_ERROR',
 
-  // Complete todo operations
-  COMPLETE_TODO_START: 'COMPLETE_TODO_START',
-  COMPLETE_TODO_SUCCESS: 'COMPLETE_TODO_SUCCESS',
-  COMPLETE_TODO_ERROR: 'COMPLETE_TODO_ERROR',
+  // Complete/uncomplete todo operations
+  TOGGLE_TODO_COMPLETION_START: 'TOGGLE_TODO_COMPLETION_START',
+  TOGGLE_TODO_COMPLETION_SUCCESS: 'TOGGLE_TODO_COMPLETION_SUCCESS',
+  TOGGLE_TODO_COMPLETION_ERROR: 'TOGGLE_TODO_COMPLETION_ERROR',
 
   // Update todo operations
   UPDATE_TODO_START: 'UPDATE_TODO_START',
@@ -117,22 +117,24 @@ export function todoReducer(state, action) {
         error: action.payload.message,
       };
 
-    case TODO_ACTIONS.COMPLETE_TODO_START:
+    case TODO_ACTIONS.TOGGLE_TODO_COMPLETION_START:
       return {
         ...state,
         todoList: state.todoList.map((todo) => {
-          return todo.id === action.payload.id ? { ...todo, isCompleted: true } : todo;
+          return todo.id === action.payload.id
+            ? { ...todo, isCompleted: !todo.isCompleted }
+            : todo;
         }),
         error: '',
       };
 
-    case TODO_ACTIONS.COMPLETE_TODO_SUCCESS:
+    case TODO_ACTIONS.TOGGLE_TODO_COMPLETION_SUCCESS:
       return {
         ...state,
         dataVersion: state.dataVersion + 1,
       };
 
-    case TODO_ACTIONS.COMPLETE_TODO_ERROR:
+    case TODO_ACTIONS.TOGGLE_TODO_COMPLETION_ERROR:
       return {
         ...state,
         todoList: state.todoList.map((todo) => {
