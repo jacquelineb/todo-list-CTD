@@ -39,7 +39,7 @@ function LoginPage() {
   }
 
   return (
-    <>
+    <div>
       {authError ? <div>{authError}</div> : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor='user-email'>Email</label>
@@ -62,7 +62,7 @@ function LoginPage() {
           {isLoggingOn ? 'Logging in...' : 'Log On'}
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

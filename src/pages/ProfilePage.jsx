@@ -56,7 +56,7 @@ function ProfilePage() {
     todoStats.total > 0 ? (todoStats.completed / todoStats.total) * 100 : 0;
 
   return (
-    <>
+    <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
@@ -84,7 +84,7 @@ function ProfilePage() {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
