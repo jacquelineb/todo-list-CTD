@@ -9,6 +9,11 @@ export const TODO_ACTIONS = {
   ADD_TODO_SUCCESS: 'ADD_TODO_SUCCESS',
   ADD_TODO_ERROR: 'ADD_TODO_ERROR',
 
+  // Delete todo operations
+  DELETE_TODO_START: 'DELETE_TODO_START',
+  DELETE_TODO_SUCCESS: 'DELETE_TODO_SUCCESS',
+  DELETE_TODO_ERROR: 'DELETE_TODO_ERROR',
+
   // Complete todo operations
   COMPLETE_TODO_START: 'COMPLETE_TODO_START',
   COMPLETE_TODO_SUCCESS: 'COMPLETE_TODO_SUCCESS',
@@ -84,6 +89,31 @@ export function todoReducer(state, action) {
       return {
         ...state,
         todoList: state.todoList.filter((todo) => todo.id !== action.payload.newTodoId),
+        error: action.payload.message,
+      };
+
+    case TODO_ACTIONS.DELETE_TODO_START:
+      return {
+        ...state,
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload.deletedTodoId),
+        error: '',
+      };
+
+    case TODO_ACTIONS.DELETE_TODO_SUCCESS:
+      return {
+        ...state,
+        dataVersion: state.dataVersion + 1,
+      };
+
+    case TODO_ACTIONS.DELETE_TODO_ERROR:
+      return {
+        ...state,
+        // restore the optimistically deleted todo at its original position in the todo list
+        todoList: state.todoList.toSpliced(
+          action.payload.deletedTodoIndex,
+          0,
+          action.payload.deletedTodo,
+        ),
         error: action.payload.message,
       };
 

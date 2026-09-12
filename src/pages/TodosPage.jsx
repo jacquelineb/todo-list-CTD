@@ -128,13 +128,45 @@ function TodosPage() {
     }
   }
 
+  async function deleteTodo(id) {
+    const deletedTodoIndex = todoList.findIndex((todo) => todo.id === id);
+    const originalTodo = todoList[deletedTodoIndex];
+    dispatch({
+      type: TODO_ACTIONS.DELETE_TODO_START,
+      payload: { deletedTodoId: id },
+    });
+
+    try {
+      const response = await fetch(`/api/tasks/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': token,
+        },
+        credentials: 'include',
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`Failed to delete todo: "${originalTodo.title}"`);
+      }
+      dispatch({ type: TODO_ACTIONS.DELETE_TODO_SUCCESS });
+    } catch (error) {
+      dispatch({
+        type: TODO_ACTIONS.DELETE_TODO_ERROR,
+        payload: {
+          deletedTodo: originalTodo,
+          deletedTodoIndex,
+          message: error.message,
+        },
+      });
+    }
+  }
+
   async function completeTodo(id) {
     const originalTodo = todoList.find((todo) => todo.id === id);
     dispatch({
       type: TODO_ACTIONS.COMPLETE_TODO_START,
-      payload: {
-        id,
-      },
+      payload: { id },
     });
 
     try {
@@ -268,6 +300,7 @@ function TodosPage() {
         todoList={todoList}
         onCompleteTodo={completeTodo}
         onUpdateTodo={updateTodo}
+        onDeleteTodo={deleteTodo}
         dataVersion={dataVersion}
         statusFilter={statusFilter}
       />
