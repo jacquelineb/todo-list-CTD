@@ -1,0 +1,5 @@
+.todosPage {
+  h2 {
+    text-transform: capitalize;
+  }
+}

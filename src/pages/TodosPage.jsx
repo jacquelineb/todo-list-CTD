@@ -8,6 +8,7 @@ import StatusFilter from '../shared/StatusFilter.jsx';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import useDebounce from '../utils/useDebounce.js';
 import { TODO_ACTIONS, initialTodoState, todoReducer } from '../reducers/todoReducer.js';
+import styles from './TodosPage.module.css';
 
 function TodosPage() {
   const { token } = useAuth();
@@ -238,7 +239,8 @@ function TodosPage() {
   }
 
   return (
-    <div>
+    <div className={styles.todosPage}>
+      <h2>{`${statusFilter} Todos`}</h2>
       {error ? (
         <div>
           <p>{error}</p>
@@ -301,7 +303,6 @@ function TodosPage() {
       <TodoForm onAddTodo={addTodo} />
       <TodoList
         todoList={todoList}
-        // onCompleteTodo={completeTodo}
         onToggleTodoCompletion={toggleTodoCompletion}
         onUpdateTodo={updateTodo}
         onDeleteTodo={deleteTodo}
