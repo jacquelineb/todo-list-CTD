@@ -270,6 +270,13 @@ function TodosPage() {
         </div>
       ) : null}
 
+      <FilterInput
+        filterTerm={filterTerm}
+        onFilterChange={(newFilterTerm) => {
+          dispatch({ type: TODO_ACTIONS.SET_FILTER, payload: { filterTerm: newFilterTerm } });
+        }}
+      />
+
       <SortBy
         sortBy={sortBy}
         sortDirection={sortDirection}
@@ -293,12 +300,6 @@ function TodosPage() {
         }}
       />
       <StatusFilter />
-      <FilterInput
-        filterTerm={filterTerm}
-        onFilterChange={(newFilterTerm) => {
-          dispatch({ type: TODO_ACTIONS.SET_FILTER, payload: { filterTerm: newFilterTerm } });
-        }}
-      />
       {isTodoListLoading ? <div>Loading todo list...</div> : null}
       <TodoForm onAddTodo={addTodo} />
       <TodoList
