@@ -276,7 +276,7 @@ function TodosPage() {
           dispatch({ type: TODO_ACTIONS.SET_FILTER, payload: { filterTerm: newFilterTerm } });
         }}
       />
-
+      <StatusFilter />
       <SortBy
         sortBy={sortBy}
         sortDirection={sortDirection}
@@ -299,7 +299,6 @@ function TodosPage() {
           });
         }}
       />
-      <StatusFilter />
       {isTodoListLoading ? <div>Loading todo list...</div> : null}
       <TodoForm onAddTodo={addTodo} />
       <TodoList
