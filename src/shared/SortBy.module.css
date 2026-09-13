@@ -1,0 +1,10 @@
+.sortBy {
+  display: flex;
+  column-gap: 20px;
+
+  select {
+    width: 100px;
+    margin-left: 4px;
+    padding: 4px 8px;
+  }
+}
