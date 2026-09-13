@@ -33,6 +33,13 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
   return (
     <li>
       <form className={styles.listItemForm} onSubmit={handleUpdate}>
+        <input
+          type='checkbox'
+          id={`checkbox${todo.id}`}
+          checked={todo.isCompleted}
+          onChange={() => onToggleTodoCompletion(todo.id)}
+          disabled={isEditing}
+        />
         {isEditing ? (
           <>
             <TextInputWithLabel
@@ -56,15 +63,7 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
             </button>
           </>
         ) : (
-          <>
-            <input
-              type='checkbox'
-              id={`checkbox${todo.id}`}
-              checked={todo.isCompleted}
-              onChange={() => onToggleTodoCompletion(todo.id)}
-            />
-            <span onClick={() => setIsEditing(true)}>{todo.title}</span>
-          </>
+          <span onClick={() => setIsEditing(true)}>{todo.title}</span>
         )}
       </form>
     </li>
