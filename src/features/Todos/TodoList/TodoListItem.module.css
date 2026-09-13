@@ -1,0 +1,10 @@
+.listItemForm {
+  display: flex;
+  column-gap: 6px;
+  align-items: flex-start;
+
+  input[type='text'] {
+    padding: 4px;
+    min-width: 300px;
+  }
+}
