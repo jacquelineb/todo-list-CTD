@@ -1,5 +1,6 @@
 .sortBy {
   display: inline-flex;
+  margin-top: 8px;
 
   select {
     margin-left: 4px;
