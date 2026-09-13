@@ -8,7 +8,7 @@ function Header() {
   return (
     <div className={styles.header}>
       <h1>Todo List</h1>
-      <div className={styles.spaceBetween}>
+      <div className={styles.navigationGroup}>
         <Navigation />
         {isAuthenticated ? <Logoff /> : null}
       </div>

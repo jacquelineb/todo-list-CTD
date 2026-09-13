@@ -1,13 +1,13 @@
 .header {
   h1 {
     text-align: center;
-    border-bottom: 1px solid gray;
-    padding-bottom: 12px;
+    text-decoration: underline;
   }
 
-  .spaceBetween {
+  .navigationGroup {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid gray;
   }
 }
