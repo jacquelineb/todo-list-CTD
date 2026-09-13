@@ -52,13 +52,14 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
               Cancel
             </button>
             <button
+              className={styles.blueBtn}
               type='button'
               onClick={handleUpdate}
               disabled={!isValidTodoTitle(workingTitle)}
             >
               Update
             </button>
-            <button type='button' onClick={handleDelete}>
+            <button className={styles.redBtn} type='button' onClick={handleDelete}>
               Delete
             </button>
           </>

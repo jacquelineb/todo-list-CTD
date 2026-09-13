@@ -7,4 +7,29 @@
     padding: 4px;
     min-width: 300px;
   }
+
+  button {
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .blueBtn {
+    background-color: #5187ee;
+    color: white;
+
+    &:hover {
+      background-color: #2467e9;
+    }
+  }
+
+  .redBtn {
+    background-color: #ff6161;
+    color: white;
+
+    &:hover {
+      background-color: #ff2828;
+    }
+  }
 }
