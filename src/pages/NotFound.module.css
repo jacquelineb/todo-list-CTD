@@ -1,0 +1,44 @@
+.notFoundPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+
+  h2 {
+    font-size: 40px;
+  }
+
+  h3 {
+    font-size: 32px;
+  }
+
+  h2,
+  h3 {
+    margin: 10px auto;
+  }
+
+  .pathname {
+    color: gray;
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  p {
+    margin: 10px auto;
+  }
+
+  a {
+    color: #192ac0;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
