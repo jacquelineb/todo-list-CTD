@@ -1,35 +1,68 @@
 .listItemForm {
   display: flex;
-  column-gap: 6px;
+  gap: 6px;
   align-items: flex-start;
+  max-width: 850px;
 
   input[type='text'] {
     padding: 4px;
     min-width: 300px;
   }
 
-  button {
-    border: none;
-    padding: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  .buttonGroup {
+    display: flex;
+    column-gap: 6px;
 
-  .blueBtn {
-    background-color: #5187ee;
-    color: white;
+    button {
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-    &:hover {
-      background-color: #2467e9;
+    .blueBtn {
+      background-color: #5187ee;
+      color: white;
+
+      &:hover {
+        background-color: #2467e9;
+      }
+    }
+
+    .redBtn {
+      background-color: #ff6161;
+      color: white;
+
+      &:hover {
+        background-color: #ff2828;
+      }
     }
   }
+}
 
-  .redBtn {
-    background-color: #ff6161;
-    color: white;
+.listItemForm.editing {
+  flex-wrap: wrap;
 
-    &:hover {
-      background-color: #ff2828;
+  .buttonGroup {
+    width: calc(100vw - 8px);
+    justify-content: end;
+  }
+
+  .editForm {
+    flex-grow: 1;
+
+    input {
+      width: 97%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .listItemForm.editing {
+    flex-wrap: nowrap;
+
+    .buttonGroup {
+      width: unset;
     }
   }
 }

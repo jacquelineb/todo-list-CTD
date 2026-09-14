@@ -32,7 +32,10 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
 
   return (
     <li>
-      <form className={styles.listItemForm} onSubmit={handleUpdate}>
+      <form
+        className={`${styles.listItemForm} ${isEditing ? styles.editing : ''}`}
+        onSubmit={handleUpdate}
+      >
         <input
           type='checkbox'
           id={`checkbox${todo.id}`}
@@ -42,26 +45,30 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
         />
         {isEditing ? (
           <>
-            <TextInputWithLabel
-              elementId={todo.id + '-input'}
-              labelText={''}
-              value={workingTitle}
-              onChange={handleEdit}
-            />
-            <button type='button' onClick={handleCancel}>
-              Cancel
-            </button>
-            <button
-              className={styles.blueBtn}
-              type='button'
-              onClick={handleUpdate}
-              disabled={!isValidTodoTitle(workingTitle)}
-            >
-              Update
-            </button>
-            <button className={styles.redBtn} type='button' onClick={handleDelete}>
-              Delete
-            </button>
+            <div className={styles.editForm}>
+              <TextInputWithLabel
+                elementId={todo.id + '-input'}
+                labelText={''}
+                value={workingTitle}
+                onChange={handleEdit}
+              />
+            </div>
+            <div className={styles.buttonGroup}>
+              <button type='button' onClick={handleCancel}>
+                Cancel
+              </button>
+              <button
+                className={styles.blueBtn}
+                type='button'
+                onClick={handleUpdate}
+                disabled={!isValidTodoTitle(workingTitle)}
+              >
+                Update
+              </button>
+              <button className={styles.redBtn} type='button' onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
           </>
         ) : (
           <span onClick={() => setIsEditing(true)}>{todo.title}</span>
