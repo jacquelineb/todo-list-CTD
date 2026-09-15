@@ -51,6 +51,7 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
                 labelText={''}
                 value={workingTitle}
                 onChange={handleEdit}
+                maxLength='100'
               />
             </div>
             <div className={styles.buttonGroup}>

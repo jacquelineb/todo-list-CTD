@@ -23,6 +23,7 @@ function TodoForm({ onAddTodo }) {
         ref={inputRef}
         value={workingTodoTitle}
         placeholder='I need to...'
+        maxLength='100'
       />
       <button type='submit' disabled={!isValidTodoTitle(workingTodoTitle)}>
         Add Todo

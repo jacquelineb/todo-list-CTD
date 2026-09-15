@@ -1,4 +1,12 @@
-function TextInputWithLabel({ elementId, labelText, onChange, ref, value, placeholder }) {
+function TextInputWithLabel({
+  elementId,
+  labelText,
+  onChange,
+  ref,
+  value,
+  placeholder,
+  maxLength,
+}) {
   return (
     <>
       <label htmlFor={elementId}>{labelText}</label>
@@ -9,6 +17,7 @@ function TextInputWithLabel({ elementId, labelText, onChange, ref, value, placeh
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     </>
   );
