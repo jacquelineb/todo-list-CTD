@@ -6,7 +6,7 @@
 
   input[type='text'] {
     padding: 4px;
-    min-width: 300px;
+    box-sizing: border-box;
   }
 
   .buttonGroup {
@@ -52,7 +52,7 @@
     flex-grow: 1;
 
     input {
-      width: 97%;
+      width: 100%;
     }
   }
 }
