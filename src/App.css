@@ -8,8 +8,14 @@
   border-radius: 6px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 500px) {
   .content {
     padding: 20px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .content {
+    padding: 32px;
   }
 }
