@@ -25,7 +25,11 @@ function TodoForm({ onAddTodo }) {
         placeholder='I need to...'
         maxLength='100'
       />
-      <button type='submit' disabled={!isValidTodoTitle(workingTodoTitle)}>
+      <button
+        className={styles.addBtn}
+        type='submit'
+        disabled={!isValidTodoTitle(workingTodoTitle)}
+      >
         Add Todo
       </button>
     </form>
