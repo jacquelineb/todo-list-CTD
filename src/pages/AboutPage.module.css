@@ -1,0 +1,10 @@
+.aboutPage {
+  h3 {
+    font-size: 20px;
+  }
+
+  p,
+  ul {
+    font-size: 18px;
+  }
+}
