@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import styles from './ProfilePage.module.css';
 
 function ProfilePage() {
   const [todoStats, setTodoStats] = useState({ total: 0, completed: 0, active: 0 });
@@ -66,20 +67,22 @@ function ProfilePage() {
           ) : (
             <>
               <h2>Welcome back, {email}</h2>
-              <section>
-                <h3>Account Information</h3>
-                <p>Name: {name}</p>
-                <p>Account Status: Active</p>
-              </section>
-              <section>
-                <h3>Statistics</h3>
-                <ul>
-                  <li>Total Todos: {todoStats.total}</li>
-                  <li>Completed Todos: {todoStats.completed}</li>
-                  <li>Active Todos: {todoStats.active}</li>
-                </ul>
-                <p>Completion Percentage: {completionPercentage.toFixed(1)}%</p>
-              </section>
+              <div className={styles.profileSections}>
+                <section>
+                  <h3>Account Information</h3>
+                  <p>Name: {name}</p>
+                  <p>Account Status: Active</p>
+                </section>
+                <section>
+                  <h3>Statistics</h3>
+                  <ul>
+                    <li>Total Todos: {todoStats.total}</li>
+                    <li>Completed Todos: {todoStats.completed}</li>
+                    <li>Active Todos: {todoStats.active}</li>
+                  </ul>
+                  <p>Completion Percentage: {completionPercentage.toFixed(1)}%</p>
+                </section>
+              </div>
             </>
           )}
         </div>
