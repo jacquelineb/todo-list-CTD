@@ -1,4 +1,13 @@
 .content {
   max-width: 1000px;
   margin: 0 auto;
+  background-color: white;
+  padding: 12px;
+  min-height: 90vh;
+}
+
+@media screen and (min-width: 600px) {
+  .content {
+    padding: 20px;
+  }
 }
