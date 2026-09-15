@@ -11,7 +11,7 @@ ADD SCREENSHOTS
 - Create, update, and/or delete todo list items
 - Organize todos with sorting and filtering
 - User authentication and private routes
-- Responsive design for mobile and desktop
+- Responsive design for mobile, tablet, and desktop devices
 
 ## Technologies
 
@@ -45,3 +45,8 @@ ADD SCREENSHOTS
 ## What I learned
 
 This project was built throughout Code The Dream's 11-week React course. Each week I learned new concepts and applied them to this Todo List application. The most important concept I learned was state management using hooks such as `useState` and `useEffect`. One of the more challenging things I learned was how to use `useReducer`. I had come across reducers previously in my React learning journey, but the idea of dispatching actions instead of setting state had always confused me. After reading Code the Dream's lesson on `useReducer` and completing the curriculum exercise on this topic, I was able to grasp the concept and successfully refactor my many `useState` calls into a single `useReducer` call, making my code more organized and readable.
+
+## Future Plans
+
+- Support for multiple todo lists
+- Ability to add due dates to todo items
