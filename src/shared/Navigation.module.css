@@ -10,5 +10,9 @@
 
   a {
     color: #192ac0;
+
+    &:hover {
+      font-weight: bold;
+    }
   }
 }
