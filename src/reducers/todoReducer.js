@@ -38,7 +38,7 @@ export const initialTodoState = {
   filterError: '',
   isTodoListLoading: true,
   sortBy: 'createdAt',
-  sortDirection: 'asc',
+  sortDirection: 'desc',
   filterTerm: '',
   dataVersion: 0,
 };
@@ -201,7 +201,7 @@ export function todoReducer(state, action) {
         ...state,
         filterTerm: '',
         sortBy: 'createdAt',
-        sortDirection: 'asc',
+        sortDirection: 'desc',
         filterError: '',
       };
 
