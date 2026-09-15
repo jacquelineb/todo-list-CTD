@@ -1,12 +1,47 @@
 # Todo List
 
-A todo list project developed throughout Code the Dream's 11-week React course.
+A responsive todo list application developed with React, styled with CSS, and built with Vite.
 
-## Installation
+## Screenshots
 
-1. Clone the repository
-2. Open a terminal at the root of the project and run `npm install` to install dependencies
+ADD SCREENSHOTS
 
-## Running the development server
+## Features
 
-Open a terminal at the root of the project and run the command `npm run dev`.
+- Create, update, and/or delete todo list items
+- Organize todos with sorting and filtering
+- User authentication and private routes
+- Responsive design for mobile and desktop
+
+## Technologies
+
+- **Frontend**: React, React Router, CSS Modules
+- **State Management**: Context API, useReducer
+- **Build Tool**: Vite
+
+## Installation and Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/jacquelineb/todo-list-CTD.git
+   ```
+
+2. Open a terminal at the root of the project and install the dependencies
+
+   ```bash
+   cd todo-list-CTD
+   npm install
+   ```
+
+3. Run the development server
+
+   ```bash
+   npm run dev
+   ```
+
+4. View the application by visiting [http://localhost:3001](http:localhost:3001) in your browser
+
+## What I learned
+
+This project was built throughout Code The Dream's 11-week React course. Each week I learned new concepts and applied them to this Todo List application. The most important concept I learned was state management using hooks such as `useState` and `useEffect`. One of the more challenging things I learned was how to use `useReducer`. I had come across reducers previously in my React learning journey, but the idea of dispatching actions instead of setting state had always confused me. After reading Code the Dream's lesson on `useReducer` and completing the curriculum exercise on this topic, I was able to grasp the concept and successfully refactor my many `useState` calls into a single `useReducer` call, making my code more organized and readable.
