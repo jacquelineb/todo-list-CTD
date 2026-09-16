@@ -63,7 +63,7 @@ function ProfilePage() {
       ) : (
         <div>
           {error ? (
-            <p>{error}</p>
+            <p className={styles.errorMsg}>{error}</p>
           ) : (
             <>
               <h2>Welcome back, {email}</h2>
