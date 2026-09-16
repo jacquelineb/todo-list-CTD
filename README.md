@@ -50,3 +50,4 @@ This project was built throughout Code The Dream's 11-week React course. Each we
 
 - Support for multiple todo lists
 - Ability to add due dates to todo items
+- Dark mode and light/dark mode toggle

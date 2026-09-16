@@ -30,6 +30,7 @@ function AboutPage() {
       <ul>
         <li>Support for multiple todo lists</li>
         <li>Ability to add due dates to todo items</li>
+        <li>Dark mode and light/dark mode toggle</li>
       </ul>
     </div>
   );
