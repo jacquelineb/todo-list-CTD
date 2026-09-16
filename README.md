@@ -4,7 +4,14 @@ A responsive todo list application developed with React, styled with CSS, and bu
 
 ## Screenshots
 
-ADD SCREENSHOTS
+### Desktop
+
+<img width="1920" height="965" alt="Todo List Desktop" src="https://github.com/user-attachments/assets/78a3b769-1788-4bc3-8194-766dfa52859f" />
+
+### Mobile
+
+<img width="382" height="697" alt="Todo List Mobile" src="https://github.com/user-attachments/assets/ee83c775-9ed1-4c23-9f30-3ff22b738ff3" />
+
 
 ## Features
 
