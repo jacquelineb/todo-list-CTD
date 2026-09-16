@@ -243,7 +243,7 @@ function TodosPage() {
       <h2>{`${statusFilter} Todos`}</h2>
       {error ? (
         <div>
-          <p>{error}</p>
+          <p className={styles.errorMsg}>{error}</p>
           <button type='button' onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_ERROR })}>
             Clear Error
           </button>
@@ -252,21 +252,23 @@ function TodosPage() {
 
       {filterError ? (
         <div>
-          <p>{filterError}</p>
-          <button
-            type='button'
-            onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_FILTER_ERROR })}
-          >
-            Clear Filter Error
-          </button>
-          <button
-            type='button'
-            onClick={() => {
-              dispatch({ type: TODO_ACTIONS.RESET_FILTERS });
-            }}
-          >
-            Reset Filters
-          </button>
+          <p className={styles.errorMsg}>{filterError}</p>
+          <div className={styles.filterErrorBtns}>
+            <button
+              type='button'
+              onClick={() => dispatch({ type: TODO_ACTIONS.CLEAR_FILTER_ERROR })}
+            >
+              Clear Filter Error
+            </button>
+            <button
+              type='button'
+              onClick={() => {
+                dispatch({ type: TODO_ACTIONS.RESET_FILTERS });
+              }}
+            >
+              Reset Filters
+            </button>
+          </div>
         </div>
       ) : null}
 
