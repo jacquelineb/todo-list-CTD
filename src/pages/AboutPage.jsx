@@ -26,6 +26,11 @@ function AboutPage() {
         <li>State Management: Context API, useReducer</li>
         <li>Build Tools: Vite</li>
       </ul>
+      <h3>Future Plans</h3>
+      <ul>
+        <li>Support for multiple todo lists</li>
+        <li>Ability to add due dates to todo items</li>
+      </ul>
     </div>
   );
 }
