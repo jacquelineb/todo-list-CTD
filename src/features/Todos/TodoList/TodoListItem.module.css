@@ -27,6 +27,12 @@
       &:hover {
         background-color: #2467e9;
       }
+
+      &:disabled {
+        background-color: #e7e7e7;
+        color: grey;
+        cursor: unset;
+      }
     }
 
     .redBtn {
