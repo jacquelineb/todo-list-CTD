@@ -1,0 +1,16 @@
+.sortBy {
+  display: inline-flex;
+  margin-top: 8px;
+
+  select {
+    margin-left: 4px;
+    margin-right: 20px;
+    padding: 4px 6px;
+  }
+}
+
+@media screen and (min-width: 570px) {
+  .sortBy select {
+    padding: 4px 8px;
+  }
+}

@@ -1,0 +1,18 @@
+.navigation {
+  ul {
+    justify-content: center;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    font-size: 18px;
+  }
+
+  a {
+    color: #192ac0;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}

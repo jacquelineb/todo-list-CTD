@@ -1,0 +1,78 @@
+.listItemForm {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  max-width: 850px;
+
+  input[type='text'] {
+    padding: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type='checkbox']:hover {
+    cursor: pointer;
+  }
+
+  .buttonGroup {
+    display: flex;
+    column-gap: 6px;
+
+    button {
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .blueBtn {
+      background-color: #5187ee;
+      color: white;
+
+      &:hover {
+        background-color: #2467e9;
+      }
+
+      &:disabled {
+        background-color: #e7e7e7;
+        color: grey;
+        cursor: unset;
+      }
+    }
+
+    .redBtn {
+      background-color: #ff6161;
+      color: white;
+
+      &:hover {
+        background-color: #ff2828;
+      }
+    }
+  }
+}
+
+.listItemForm.editing {
+  flex-wrap: wrap;
+
+  .buttonGroup {
+    width: calc(100vw - 8px);
+    justify-content: end;
+  }
+
+  .editForm {
+    flex-grow: 1;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .listItemForm.editing {
+    flex-wrap: nowrap;
+
+    .buttonGroup {
+      width: unset;
+    }
+  }
+}

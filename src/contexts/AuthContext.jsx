@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 // Create the context
 const AuthContext = createContext();
@@ -14,8 +14,13 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   // State for authentication
-  const [email, setEmail] = useState('');
-  const [token, setToken] = useState('');
+  const [email, setEmail] = useState(JSON.parse(localStorage.getItem('email')));
+  const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
+
+  useEffect(() => {
+    localStorage.setItem('email', JSON.stringify(email));
+    localStorage.setItem('token', JSON.stringify(token));
+  }, [email, token]);
 
   const login = async (userEmail, password) => {
     try {
@@ -33,6 +38,7 @@ export function AuthProvider({ children }) {
         // Success: Update state
         setEmail(data.name);
         setToken(data.csrfToken);
+
         return { success: true };
       } else {
         // Failure: Return error

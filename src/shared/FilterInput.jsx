@@ -1,6 +1,8 @@
+import styles from './FilterInput.module.css';
+
 function FilterInput({ filterTerm, onFilterChange }) {
   return (
-    <div>
+    <div className={styles.filterInput}>
       <label htmlFor='filterInput'>Search todos:</label>
       <input
         id='filterInput'

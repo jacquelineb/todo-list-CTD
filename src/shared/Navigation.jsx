@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
+import styles from './Navigation.module.css';
 
 function navLinkStyle({ isActive }) {
   return isActive
@@ -11,8 +12,8 @@ function Navigation() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <nav>
-      <ul style={{ listStyle: 'none', display: 'flex', gap: '1rem', padding: 0 }}>
+    <nav className={styles.navigation}>
+      <ul>
         <li>
           <NavLink to='/about' style={navLinkStyle}>
             About

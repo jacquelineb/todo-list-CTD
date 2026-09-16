@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import styles from './ProfilePage.module.css';
 
 function ProfilePage() {
   const [todoStats, setTodoStats] = useState({ total: 0, completed: 0, active: 0 });
@@ -26,11 +27,11 @@ function ProfilePage() {
         const response = await fetch(`/api/tasks?${params}`, options);
 
         if (response.status === 401) {
-          throw new Error('Unauthorized');
+          throw new Error('Unauthorized. Please sign back in and try again.');
         }
 
         if (!response.ok) {
-          throw new Error('Failed to fetch todos');
+          throw new Error('Failed to fetch todo list.');
         }
 
         const result = await response.json();
@@ -56,35 +57,37 @@ function ProfilePage() {
     todoStats.total > 0 ? (todoStats.completed / todoStats.total) * 100 : 0;
 
   return (
-    <>
+    <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
         <div>
           {error ? (
-            <p>{error}</p>
+            <p className={styles.errorMsg}>{error}</p>
           ) : (
             <>
               <h2>Welcome back, {email}</h2>
-              <section>
-                <h3>Account Information</h3>
-                <p>Name: {name}</p>
-                <p>Account Status: Active</p>
-              </section>
-              <section>
-                <h3>Statistics</h3>
-                <ul>
-                  <li>Total Todos: {todoStats.total}</li>
-                  <li>Completed Todos: {todoStats.completed}</li>
-                  <li>Active Todos: {todoStats.active}</li>
-                </ul>
-                <p>Completion Percentage: {completionPercentage.toFixed(1)}%</p>
-              </section>
+              <div className={styles.profileSections}>
+                <section>
+                  <h3>Account Information</h3>
+                  <p>Name: {name}</p>
+                  <p>Account Status: Active</p>
+                </section>
+                <section>
+                  <h3>Statistics</h3>
+                  <ul>
+                    <li>Total Todos: {todoStats.total}</li>
+                    <li>Completed Todos: {todoStats.completed}</li>
+                    <li>Active Todos: {todoStats.active}</li>
+                  </ul>
+                  <p>Completion Percentage: {completionPercentage.toFixed(1)}%</p>
+                </section>
+              </div>
             </>
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

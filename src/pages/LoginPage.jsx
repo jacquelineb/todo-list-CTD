@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
+import styles from './LoginPage.module.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ function LoginPage() {
   const location = useLocation();
 
   // Get intended destination from location state, default to /todos
-  const from = location.state?.from?.pathname || '/todos';
+  const from = location.state?.from || '/todos';
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -39,30 +40,35 @@ function LoginPage() {
   }
 
   return (
-    <>
-      {authError ? <div>{authError}</div> : null}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='user-email'>Email</label>
-        <input
-          type='text'
-          id='user-email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label htmlFor='user-password'>Password</label>
-        <input
-          type='password'
-          id='user-password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+    <div className={styles.loginPage}>
+      <h2>Log In</h2>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor='user-email'>Email</label>
+          <input
+            type='text'
+            id='user-email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor='user-password'>Password</label>
+          <input
+            type='password'
+            id='user-password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
         <button type='submit' disabled={isLoggingOn}>
           {isLoggingOn ? 'Logging in...' : 'Log On'}
         </button>
       </form>
-    </>
+      {authError ? <div className={styles.loginError}>{authError}</div> : null}
+    </div>
   );
 }
 

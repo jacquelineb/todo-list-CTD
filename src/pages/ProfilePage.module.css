@@ -1,0 +1,22 @@
+.profileSections {
+  margin: 0 auto;
+
+  section {
+    background-color: #f0fafd;
+    border-radius: 6px;
+    padding: 8px 16px;
+    border: 1px solid #cce8f9;
+    margin-bottom: 20px;
+  }
+}
+
+.errorMsg {
+  color: red;
+}
+
+@media screen and (min-width: 600px) {
+  .profileSections {
+    width: 75vw;
+    max-width: 600px;
+  }
+}

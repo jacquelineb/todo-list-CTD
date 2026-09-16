@@ -1,0 +1,55 @@
+.loginPage {
+  width: max-content;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  width: 88vw;
+
+  div {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  label {
+    display: block;
+    font-size: 18px;
+  }
+
+  input {
+    height: 32px;
+    padding: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  button {
+    margin: 8px 0;
+    width: 100%;
+    max-width: 300px;
+    padding: 4px;
+    height: 36px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+
+.loginError {
+  margin: 8px 0;
+  color: red;
+}
+
+@media screen and (min-width: 600px) {
+  .loginForm {
+    width: 300px;
+  }
+}

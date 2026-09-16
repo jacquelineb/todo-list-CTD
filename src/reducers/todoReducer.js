@@ -9,10 +9,15 @@ export const TODO_ACTIONS = {
   ADD_TODO_SUCCESS: 'ADD_TODO_SUCCESS',
   ADD_TODO_ERROR: 'ADD_TODO_ERROR',
 
-  // Complete todo operations
-  COMPLETE_TODO_START: 'COMPLETE_TODO_START',
-  COMPLETE_TODO_SUCCESS: 'COMPLETE_TODO_SUCCESS',
-  COMPLETE_TODO_ERROR: 'COMPLETE_TODO_ERROR',
+  // Delete todo operations
+  DELETE_TODO_START: 'DELETE_TODO_START',
+  DELETE_TODO_SUCCESS: 'DELETE_TODO_SUCCESS',
+  DELETE_TODO_ERROR: 'DELETE_TODO_ERROR',
+
+  // Complete/uncomplete todo operations
+  TOGGLE_TODO_COMPLETION_START: 'TOGGLE_TODO_COMPLETION_START',
+  TOGGLE_TODO_COMPLETION_SUCCESS: 'TOGGLE_TODO_COMPLETION_SUCCESS',
+  TOGGLE_TODO_COMPLETION_ERROR: 'TOGGLE_TODO_COMPLETION_ERROR',
 
   // Update todo operations
   UPDATE_TODO_START: 'UPDATE_TODO_START',
@@ -33,7 +38,7 @@ export const initialTodoState = {
   filterError: '',
   isTodoListLoading: true,
   sortBy: 'createdAt',
-  sortDirection: 'asc',
+  sortDirection: 'desc',
   filterTerm: '',
   dataVersion: 0,
 };
@@ -87,22 +92,49 @@ export function todoReducer(state, action) {
         error: action.payload.message,
       };
 
-    case TODO_ACTIONS.COMPLETE_TODO_START:
+    case TODO_ACTIONS.DELETE_TODO_START:
       return {
         ...state,
-        todoList: state.todoList.map((todo) => {
-          return todo.id === action.payload.id ? { ...todo, isCompleted: true } : todo;
-        }),
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload.deletedTodoId),
         error: '',
       };
 
-    case TODO_ACTIONS.COMPLETE_TODO_SUCCESS:
+    case TODO_ACTIONS.DELETE_TODO_SUCCESS:
       return {
         ...state,
         dataVersion: state.dataVersion + 1,
       };
 
-    case TODO_ACTIONS.COMPLETE_TODO_ERROR:
+    case TODO_ACTIONS.DELETE_TODO_ERROR:
+      return {
+        ...state,
+        // restore the optimistically deleted todo at its original position in the todo list
+        todoList: state.todoList.toSpliced(
+          action.payload.deletedTodoIndex,
+          0,
+          action.payload.deletedTodo,
+        ),
+        error: action.payload.message,
+      };
+
+    case TODO_ACTIONS.TOGGLE_TODO_COMPLETION_START:
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) => {
+          return todo.id === action.payload.id
+            ? { ...todo, isCompleted: !todo.isCompleted }
+            : todo;
+        }),
+        error: '',
+      };
+
+    case TODO_ACTIONS.TOGGLE_TODO_COMPLETION_SUCCESS:
+      return {
+        ...state,
+        dataVersion: state.dataVersion + 1,
+      };
+
+    case TODO_ACTIONS.TOGGLE_TODO_COMPLETION_ERROR:
       return {
         ...state,
         todoList: state.todoList.map((todo) => {
@@ -169,7 +201,7 @@ export function todoReducer(state, action) {
         ...state,
         filterTerm: '',
         sortBy: 'createdAt',
-        sortDirection: 'asc',
+        sortDirection: 'desc',
         filterError: '',
       };
 
