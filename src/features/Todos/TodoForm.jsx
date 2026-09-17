@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import TextInputWithLabel from '../../shared/TextInputWithLabel.jsx';
 import { isValidTodoTitle } from '../../utils/todoValidation.js';
+import { MAX_TODO_LENGTH } from '../../utils/constants.js';
 import styles from './TodoForm.module.css';
 
 function TodoForm({ onAddTodo }) {
@@ -23,7 +24,7 @@ function TodoForm({ onAddTodo }) {
         ref={inputRef}
         value={workingTodoTitle}
         placeholder='I need to...'
-        maxLength='100'
+        maxLength={MAX_TODO_LENGTH}
       />
       <button
         className={styles.addBtn}

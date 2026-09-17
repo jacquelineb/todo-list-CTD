@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TextInputWithLabel from '../../../shared/TextInputWithLabel.jsx';
 import { isValidTodoTitle } from '../../../utils/todoValidation.js';
+import { MAX_TODO_LENGTH } from '../../../utils/constants.js';
 import styles from './TodoListItem.module.css';
 
 function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo }) {
@@ -51,7 +52,7 @@ function TodoListItem({ todo, onToggleTodoCompletion, onUpdateTodo, onDeleteTodo
                 labelText={''}
                 value={workingTitle}
                 onChange={handleEdit}
-                maxLength='100'
+                maxLength={MAX_TODO_LENGTH}
               />
             </div>
             <div className={styles.buttonGroup}>
