@@ -12,7 +12,6 @@ A responsive todo list application developed with React, styled with CSS, and bu
 
 <img width="382" height="697" alt="Todo List Mobile" src="https://github.com/user-attachments/assets/ee83c775-9ed1-4c23-9f30-3ff22b738ff3" />
 
-
 ## Features
 
 - Create, update, and/or delete todo list items
@@ -49,6 +48,20 @@ A responsive todo list application developed with React, styled with CSS, and bu
 
 4. View the application by visiting [http://localhost:3001](http:localhost:3001) in your browser
 
+## Available Scripts
+
+`npm run dev` - start the dev server in the current directory
+
+`npm run build` - build the application for production
+
+`npm run lint` - lint the application code using ESLint
+
+`npm run preview` - locally preview the production build
+
+## Design Decisions
+
+I tried to go with a minimal stying approach to limit distractions since this is a todo list application.
+
 ## What I learned
 
 This project was built throughout Code The Dream's 11-week React course. Each week I learned new concepts and applied them to this Todo List application. The most important concept I learned was state management using hooks such as `useState` and `useEffect`. One of the more challenging things I learned was how to use `useReducer`. I had come across reducers previously in my React learning journey, but the idea of dispatching actions instead of setting state had always confused me. After reading Code the Dream's lesson on `useReducer` and completing the curriculum exercise on this topic, I was able to grasp the concept and successfully refactor my many `useState` calls into a single `useReducer` call, making my code more organized and readable.
@@ -58,3 +71,33 @@ This project was built throughout Code The Dream's 11-week React course. Each we
 - Support for multiple todo lists
 - Ability to add due dates to todo items
 - Dark mode and light/dark mode toggle
+
+## License Information
+
+MIT License
+
+Copyright (c) 2019-present, VoidZero Inc. and Vite contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## Contact Information
+
+My github profile:
+
+[https://github.com/jacquelineb](https://github.com/jacquelineb)
