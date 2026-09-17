@@ -59,7 +59,7 @@ function ProfilePage() {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div className={styles.loadingMsg}>Loading...</div>
       ) : (
         <div>
           {error ? (

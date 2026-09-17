@@ -46,6 +46,7 @@ h2 {
 .loginError {
   margin: 8px 0;
   color: red;
+  font-size: 18px;
 }
 
 @media screen and (min-width: 600px) {
