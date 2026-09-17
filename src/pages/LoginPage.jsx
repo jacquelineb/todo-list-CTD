@@ -46,10 +46,11 @@ function LoginPage() {
         <div>
           <label htmlFor='user-email'>Email</label>
           <input
-            type='text'
+            type='email'
             id='user-email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            maxLength='254'
             required
           />
         </div>
@@ -60,6 +61,7 @@ function LoginPage() {
             id='user-password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            maxLength='100'
             required
           />
         </div>
